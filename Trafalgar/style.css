@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.site-header {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: 'Mulish', sans-serif;
+    left: 0;
+    padding: 46px 131px 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.site-nav {
+    display: flex;
+    gap: 50px;
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: #1F1534;
+    font-weight: 400px;
+}
+
+.site-nav a:first-child {
+    color: #000000;
+    font-weight: 700px;
+
+}
+
+.main {
+    align-items: center;
+    display: flex;
+    font-family: 'Mulish', sans-serif;
+    justify-content: space-between;
+    margin: 100px 131px 0;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.main > img {
+    height: 466px;
+    opacity: 1;
+    transform: rotate(0deg);
+    width: 609px;
+}
+
+.main h1 {
+    font-size: 45px;
+    line-height: 56px;
+}
+
+.main p {
+    color: #7D7987;
+    font-size: 19px;
+    line-height: 32px;
+}
+
+.main button {
+    background-color: #E7E7E7;
+    border: none;
+    border-radius: 55px;
+    color: #000000;
+    cursor: pointer;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    height: 49px;
+    left: 130px;
+    opacity: 1;
+    padding: 0;
+    position: absolute;
+    top: 570px;
+    width: 197px;
+    font-size: 17px;
+    transition: all 0.3s ease-in-out;
+}
+
+.main button:hover {
+    background-color: #458FF6;
+    color: #FFFFFF;
+    scale: 1.05;
+}
+
+.service {
+    font-family: 'Mulish', sans-serif;
+    margin: 100px 131px 80px;
+    text-align: center;
+}
+
+.service h1 {
+    font-size: 36px;
+    line-height: 56px;
+}
+
+.service p {
+    color: #7D7987;
+    font-size: 18px;
+    line-height: 30px;
+    margin: 20px auto 40px;
+    max-width: 1000px;
+}
+
+.service-boxes {
+    column-gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 380px);
+    justify-content: center;
+    row-gap: 30px;
+}
+
+.service-box {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 380px;
+    justify-content: center;
+    padding: 24px;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    width: 380px;
+}
+
+.service-box:hover {
+    background-color: #458FF6;
+    color: #FFFFFF;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.service-box:hover p {
+    color: #FFFFFF;
+}
+
+.service-box img {
+    height: 64px;
+    object-fit: contain;
+    transform: translateY(-32px);
+    width: 64px;
+}
+
+.service-box h2 {
+    font-size: 20px;
+}
+
+.service-box p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.service-button {
+    background-color: transparent;
+    border: 1px solid #458FF6;
+    border-radius: 55px;
+    color: #458FF6;
+    cursor: pointer;
+    font-family: 'Mulish', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 40px;
+    padding: 14px 32px;
+    transition: all 0.3s ease-in-out;
+}
+
+.service-button:hover {
+    background-color: #458FF6;
+    color: #FFFFFF;
+}
+
+.info {
+    align-items: center;
+    display: flex;
+    font-family: 'Mulish', sans-serif;
+    gap: 100px;
+    margin: 120px 131px 100px;
+}
+
+.info > img {
+    height: auto;
+    width: 50%;
+}
+
+.info-content {
+    max-width: 450px;
+}
+
+.info h1 {
+    font-size: 36px;
+    line-height: 48px;
+}
+
+.info p {
+    color: #7D7987;
+    font-size: 18px;
+    line-height: 30px;
+    margin: 24px 0 32px;
+}
+
+.info-button {
+    background-color: transparent;
+    border: 1px solid #458FF6;
+    border-radius: 55px;
+    color: #458FF6;
+    cursor: pointer;
+    font-family: 'Mulish', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 14px 32px;
+    transition: all 0.3s ease-in-out;
+}
+
+.info-button:hover {
+    background-color: #458FF6;
+    color: #FFFFFF;
+}
