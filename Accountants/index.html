@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClearSky Accounting — certified accountants for bookkeeping, tax planning, payroll and financial advice for small businesses and individuals.">
+    <title>ClearSky Accounting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Mulish:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <!-- Icon sprite: each icon is reused below with <use href="#icon-name"> -->
+    <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-trend" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+        <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+        <symbol id="i-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></symbol>
+        <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></symbol>
+        <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+        <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></symbol>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+        <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+        <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#home" aria-label="ClearSky Accounting home">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9"/><path d="M9 22v-5M14 22v-9M19 22v-6M24 22V9"/></svg>
+                </span>
+                <span class="logo-text">ClearSky<small>Accounting</small></span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a href="#home" class="is-active">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Team</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="btn btn-primary btn-small nav-cta">Free consultation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- 1. Hero -->
+        <section class="hero" id="home">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <span class="eyebrow">Certified accountants since 2009</span>
+                    <h1>Clear numbers.<br>Confident decisions.</h1>
+                    <p class="lead">We take care of your bookkeeping, taxes and payroll so you can focus on growing your business. Proactive advice from certified accountants who actually pick up the phone.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Book a free consultation <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <a href="#services" class="btn btn-outline">Explore services</a>
+                    </div>
+                    <div class="hero-proof">
+                        <div class="avatar-stack" aria-hidden="true">
+                            <span>LB</span><span>MR</span><span>PN</span><span>+</span>
+                        </div>
+                        <p><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><strong>4.9 / 5</strong> from 600+ happy clients</p>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="dash-card">
+                        <div class="dash-head">
+                            <span class="dash-title">Monthly overview</span>
+                            <span class="dash-badge">Oct 2026</span>
+                        </div>
+                        <p class="dash-label">Net profit</p>
+                        <p class="dash-value">$48,250 <span class="dash-trend">+12.4%</span></p>
+                        <div class="dash-chart">
+                            <div class="bar" style="--h: 42%"><span>May</span></div>
+                            <div class="bar" style="--h: 58%"><span>Jun</span></div>
+                            <div class="bar" style="--h: 50%"><span>Jul</span></div>
+                            <div class="bar" style="--h: 68%"><span>Aug</span></div>
+                            <div class="bar" style="--h: 74%"><span>Sep</span></div>
+                            <div class="bar bar-current" style="--h: 92%"><span>Oct</span></div>
+                        </div>
+                        <div class="dash-legend">
+                            <div><span class="dot dot-in"></span>Income <strong>$62,750</strong></div>
+                            <div><span class="dot dot-out"></span>Expenses <strong>$14,500</strong></div>
+                        </div>
+                    </div>
+                    <div class="float-card float-top">
+                        <span class="float-icon"><svg class="icon"><use href="#i-check"/></svg></span>
+                        <div><strong>Tax return filed</strong><small>5 days before deadline</small></div>
+                    </div>
+                    <div class="float-card float-bottom">
+                        <span class="float-icon"><svg class="icon"><use href="#i-users"/></svg></span>
+                        <div><strong>Payroll processed</strong><small>24 employees paid</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Stats -->
+        <section class="stats" aria-label="ClearSky in numbers">
+            <div class="container stats-grid">
+                <div class="stat">
+                    <p class="stat-number"><span data-count="15">15</span>+</p>
+                    <p class="stat-label">Years of experience</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-number"><span data-count="1200">1,200</span>+</p>
+                    <p class="stat-label">Businesses served</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-number">$<span data-count="38">38</span>M</p>
+                    <p class="stat-label">Saved in taxes for clients</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-number"><span data-count="98">98</span>%</p>
+                    <p class="stat-label">Client retention rate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Services -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">What we do</span>
+                    <h2>Accounting services built around you</h2>
+                    <p>From day-to-day bookkeeping to long-term financial strategy, our team covers every number your business depends on.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-book"/></svg></span>
+                        <h3>Bookkeeping</h3>
+                        <p>Accurate, up-to-date books reconciled every month, with clear reports you can actually read.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-file"/></svg></span>
+                        <h3>Tax planning &amp; returns</h3>
+                        <p>Year-round tax strategy and on-time filing for individuals, sole traders and companies.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-users"/></svg></span>
+                        <h3>Payroll services</h3>
+                        <p>Pay your team correctly and on time, with every deduction, payslip and filing handled.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-trend"/></svg></span>
+                        <h3>Financial advisory</h3>
+                        <p>Budgets, forecasts and cash-flow plans that turn your numbers into confident decisions.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-shield"/></svg></span>
+                        <h3>Audit &amp; assurance</h3>
+                        <p>Independent audits and reviews that build trust with lenders, investors and partners.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                    <article class="service-card reveal">
+                        <span class="icon-box"><svg class="icon"><use href="#i-briefcase"/></svg></span>
+                        <h3>Business setup</h3>
+                        <p>Choosing the right structure, registering your company and setting up your books from day one.</p>
+                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. About -->
+        <section class="section section-tint" id="about">
+            <div class="container about-inner">
+                <div class="about-visual reveal" aria-hidden="true">
+                    <div class="ledger-card">
+                        <p class="ledger-title">This month's checklist</p>
+                        <ul>
+                            <li><span>Bank reconciliation</span><em class="pill pill-done">Done</em></li>
+                            <li><span>Sales tax return</span><em class="pill pill-done">Filed</em></li>
+                            <li><span>Payroll &amp; payslips</span><em class="pill pill-done">Paid</em></li>
+                            <li><span>Cash-flow forecast</span><em class="pill pill-progress">Updating</em></li>
+                        </ul>
+                    </div>
+                    <div class="about-badge">
+                        <strong>Est.</strong>
+                        <span>2009</span>
+                    </div>
+                    <blockquote class="about-quote">“We don't just do your books — we help you understand them.”</blockquote>
+                </div>
+                <div class="about-content reveal">
+                    <span class="eyebrow">About us</span>
+                    <h2>A modern accounting firm with old-fashioned values</h2>
+                    <p>ClearSky started with a simple idea: small businesses deserve the same quality of financial advice as large corporations, without the jargon or the surprise invoices.</p>
+                    <p>Today our team of certified accountants supports more than 1,200 business owners, freelancers and families. We combine cloud technology with a personal relationship, so you always know who is looking after your numbers.</p>
+                    <ul class="check-list">
+                        <li><svg class="icon"><use href="#i-check"/></svg>Certified accountants on every account</li>
+                        <li><svg class="icon"><use href="#i-check"/></svg>Fixed monthly fees, agreed up front</li>
+                        <li><svg class="icon"><use href="#i-check"/></svg>Works with the cloud software you already use</li>
+                        <li><svg class="icon"><use href="#i-check"/></svg>Plain-English reports every month</li>
+                    </ul>
+                    <a href="#team" class="btn btn-primary">Meet the team <svg class="icon"><use href="#i-arrow"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Why choose us -->
+        <section class="section" id="why">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Why ClearSky</span>
+                    <h2>Why business owners choose us</h2>
+                    <p>Good accounting is more than correct numbers. It is about being reachable, being proactive and being on your side.</p>
+                </div>
+                <div class="why-grid">
+                    <div class="why-card reveal">
+                        <span class="icon-circle"><svg class="icon"><use href="#i-user"/></svg></span>
+                        <h3>Your own accountant</h3>
+                        <p>One dedicated expert who knows your business, not a different call-centre voice every time.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <span class="icon-circle"><svg class="icon"><use href="#i-tag"/></svg></span>
+                        <h3>Transparent pricing</h3>
+                        <p>A fixed monthly fee covering everything in your plan. No hourly billing, no hidden extras.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <span class="icon-circle"><svg class="icon"><use href="#i-lock"/></svg></span>
+                        <h3>Bank-level security</h3>
+                        <p>Encrypted document portal, two-factor login and strict confidentiality on every file.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <span class="icon-circle"><svg class="icon"><use href="#i-clock"/></svg></span>
+                        <h3>Fast responses</h3>
+                        <p>Every question answered within one business day, with priority support during tax season.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. How it works -->
+        <section class="section section-tint" id="process">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">How it works</span>
+                    <h2>Getting started is simple</h2>
+                    <p>Switching accountants sounds daunting. We make it painless in four clear steps.</p>
+                </div>
+                <ol class="steps">
+                    <li class="step reveal">
+                        <span class="step-number">01</span>
+                        <h3>Free consultation</h3>
+                        <p>A 30-minute call to understand your business, goals and current challenges.</p>
+                    </li>
+                    <li class="step reveal">
+                        <span class="step-number">02</span>
+                        <h3>Tailored proposal</h3>
+                        <p>A clear plan and fixed quote covering exactly the services you need.</p>
+                    </li>
+                    <li class="step reveal">
+                        <span class="step-number">03</span>
+                        <h3>Easy onboarding</h3>
+                        <p>We contact your previous accountant and move your records over for you.</p>
+                    </li>
+                    <li class="step reveal">
+                        <span class="step-number">04</span>
+                        <h3>Ongoing support</h3>
+                        <p>Monthly reports, deadline reminders and advice whenever you need it.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 7. Industries -->
+        <section class="section" id="industries">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Industries</span>
+                    <h2>Specialist knowledge for your sector</h2>
+                    <p>Every industry has its own rules, margins and tax reliefs. Our team knows yours.</p>
+                </div>
+                <ul class="industry-grid">
+                    <li class="industry reveal"><svg class="icon"><use href="#i-cart"/></svg>Retail &amp; e-commerce</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-coffee"/></svg>Restaurants &amp; hospitality</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-tool"/></svg>Construction &amp; trades</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-heart"/></svg>Healthcare &amp; clinics</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-cpu"/></svg>Technology &amp; startups</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-home"/></svg>Real estate &amp; landlords</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-globe"/></svg>Non-profits &amp; charities</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-feather"/></svg>Freelancers &amp; creatives</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 8. Pricing -->
+        <section class="section section-tint" id="pricing">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Pricing</span>
+                    <h2>Simple plans, fixed monthly fees</h2>
+                    <p>Pick the plan that fits today and change it any time as your business grows.</p>
+                </div>
+
+                <div class="billing-switch reveal">
+                    <span id="label-monthly" class="is-current">Monthly</span>
+                    <button class="switch" id="billing-toggle" type="button" role="switch" aria-checked="false" aria-label="Yearly billing"><span></span></button>
+                    <span id="label-yearly">Yearly <em>Save 20%</em></span>
+                </div>
+
+                <div class="pricing-grid">
+                    <article class="price-card reveal">
+                        <h3>Starter</h3>
+                        <p class="price-desc">For freelancers and sole traders getting organised.</p>
+                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="149" data-yearly="119">149</span><span class="period">/month</span></p>
+                        <p class="price-note">Billed monthly</p>
+                        <ul class="price-features">
+                            <li><svg class="icon"><use href="#i-check"/></svg>Monthly bookkeeping</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Annual tax return</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Quarterly reports</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Email support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-block">Choose Starter</a>
+                    </article>
+
+                    <article class="price-card price-card-featured reveal">
+                        <span class="price-badge">Most popular</span>
+                        <h3>Growth</h3>
+                        <p class="price-desc">For small businesses with staff and growing sales.</p>
+                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="299" data-yearly="239">299</span><span class="period">/month</span></p>
+                        <p class="price-note">Billed monthly</p>
+                        <ul class="price-features">
+                            <li><svg class="icon"><use href="#i-check"/></svg>Everything in Starter</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Payroll for up to 15 staff</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Sales tax returns</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Monthly management reports</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Dedicated accountant</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary btn-block">Choose Growth</a>
+                    </article>
+
+                    <article class="price-card reveal">
+                        <h3>Enterprise</h3>
+                        <p class="price-desc">For established companies that need a finance partner.</p>
+                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="599" data-yearly="479">599</span><span class="period">/month</span></p>
+                        <p class="price-note">Billed monthly</p>
+                        <ul class="price-features">
+                            <li><svg class="icon"><use href="#i-check"/></svg>Everything in Growth</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Unlimited payroll</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Budgets &amp; cash-flow forecasts</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Quarterly strategy meetings</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg>Priority phone support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-block">Choose Enterprise</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Team -->
+        <section class="section" id="team">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Our team</span>
+                    <h2>The people behind your numbers</h2>
+                    <p>Qualified, experienced and genuinely friendly. Meet some of the accountants you will work with.</p>
+                </div>
+                <div class="team-grid">
+                    <article class="team-card reveal">
+                        <div class="team-photo" aria-hidden="true">SM</div>
+                        <h3>Sarah Mitchell</h3>
+                        <p class="team-role">Founder &amp; Managing Partner</p>
+                        <p>20 years advising small businesses on tax and growth strategy.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Sarah Mitchell on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                            <a href="#contact" aria-label="Email Sarah Mitchell"><svg class="icon"><use href="#i-mail"/></svg></a>
+                        </div>
+                    </article>
+                    <article class="team-card reveal">
+                        <div class="team-photo" aria-hidden="true">DC</div>
+                        <h3>David Chen</h3>
+                        <p class="team-role">Head of Tax</p>
+                        <p>Specialist in business and personal tax planning and compliance.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="David Chen on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                            <a href="#contact" aria-label="Email David Chen"><svg class="icon"><use href="#i-mail"/></svg></a>
+                        </div>
+                    </article>
+                    <article class="team-card reveal">
+                        <div class="team-photo" aria-hidden="true">AH</div>
+                        <h3>Amira Hassan</h3>
+                        <p class="team-role">Payroll Manager</p>
+                        <p>Keeps hundreds of payrolls running smoothly and on schedule.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Amira Hassan on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                            <a href="#contact" aria-label="Email Amira Hassan"><svg class="icon"><use href="#i-mail"/></svg></a>
+                        </div>
+                    </article>
+                    <article class="team-card reveal">
+                        <div class="team-photo" aria-hidden="true">JO</div>
+                        <h3>James Okafor</h3>
+                        <p class="team-role">Financial Advisor</p>
+                        <p>Helps owners plan cash flow, funding and long-term investments.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="James Okafor on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                            <a href="#contact" aria-label="Email James Okafor"><svg class="icon"><use href="#i-mail"/></svg></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Testimonials -->
+        <section class="section section-blue" id="testimonials">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2>What our clients say</h2>
+                    <p>Don't just take our word for it. Here is what business owners say about working with ClearSky.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <figure class="testimonial reveal">
+                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote>“For the first time in ten years I actually understand my accounts. ClearSky found deductions my old accountant missed and saved us thousands.”</blockquote>
+                        <figcaption>
+                            <span class="avatar" aria-hidden="true">LB</span>
+                            <span><strong>Laura Bennett</strong>Owner, Bennett Bakery</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote>“Payroll for 40 people used to eat up two days every month. Now it just happens, and I get a clear summary in my inbox.”</blockquote>
+                        <figcaption>
+                            <span class="avatar" aria-hidden="true">MR</span>
+                            <span><strong>Marcus Reid</strong>Director, Reid Construction</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial reveal">
+                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote>“Their cash-flow forecast helped us secure our first round of funding. They feel like part of our team, not an outside supplier.”</blockquote>
+                        <figcaption>
+                            <span class="avatar" aria-hidden="true">PN</span>
+                            <span><strong>Priya Nair</strong>Co-founder, Nimbus Studio</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. FAQ -->
+        <section class="section" id="faq">
+            <div class="container faq-inner">
+                <div class="section-head section-head-left reveal">
+                    <span class="eyebrow">FAQ</span>
+                    <h2>Frequently asked questions</h2>
+                    <p>Can't find what you are looking for? <a href="#contact">Send us a message</a> and we will get back to you within one business day.</p>
+                </div>
+                <div class="faq-list reveal">
+                    <details class="faq-item" name="faq" open>
+                        <summary>How much does it cost to work with you?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>Our plans start at $149 per month. After a free consultation we give you a fixed quote, so you know exactly what you will pay every month with no hourly billing.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>My books are months behind. Can you still help?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>Absolutely. Catch-up bookkeeping is one of our most common requests. We will bring your records up to date and then keep them that way.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Do I need to be local to work with you?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>No. Most of our clients work with us entirely online through our secure portal and video calls, but you are always welcome to visit our office.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Which accounting software do you support?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>We work with all the major cloud accounting platforms. If you do not use one yet, we will recommend and set up the best option for your business.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>How do you keep my financial data secure?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>All documents are shared through an encrypted portal with two-factor authentication. Our team follows strict confidentiality and data-protection policies.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Can I switch accountants in the middle of the year?<svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p>Yes. We handle the handover with your previous accountant, so the switch is smooth at any time of year.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Blog / Resources -->
+        <section class="section section-tint" id="blog">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Resources</span>
+                    <h2>Latest tips from our accountants</h2>
+                    <p>Practical guides to help you keep more of what you earn.</p>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-card reveal">
+                        <div class="blog-thumb blog-thumb-1" aria-hidden="true"><svg class="icon"><use href="#i-file"/></svg></div>
+                        <div class="blog-body">
+                            <p class="blog-meta"><span class="tag">Tax</span><time datetime="2026-09-28">Sep 28, 2026</time></p>
+                            <h3><a href="#blog">7 tax deductions small businesses often miss</a></h3>
+                            <p>From home-office costs to training courses, here are the expenses worth checking before you file.</p>
+                        </div>
+                    </article>
+                    <article class="blog-card reveal">
+                        <div class="blog-thumb blog-thumb-2" aria-hidden="true"><svg class="icon"><use href="#i-trend"/></svg></div>
+                        <div class="blog-body">
+                            <p class="blog-meta"><span class="tag">Cash flow</span><time datetime="2026-09-14">Sep 14, 2026</time></p>
+                            <h3><a href="#blog">Cash flow vs. profit: why the difference matters</a></h3>
+                            <p>A profitable business can still run out of cash. Learn how to spot the warning signs early.</p>
+                        </div>
+                    </article>
+                    <article class="blog-card reveal">
+                        <div class="blog-thumb blog-thumb-3" aria-hidden="true"><svg class="icon"><use href="#i-calendar"/></svg></div>
+                        <div class="blog-body">
+                            <p class="blog-meta"><span class="tag">Planning</span><time datetime="2026-08-30">Aug 30, 2026</time></p>
+                            <h3><a href="#blog">Your year-end checklist for stress-free accounts</a></h3>
+                            <p>Ten simple steps to get your books in shape before the financial year closes.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Call to action -->
+        <section class="section cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-banner reveal">
+                    <div>
+                        <h2 id="cta-title">Ready to take the stress out of your finances?</h2>
+                        <p>Book a free, no-obligation 30-minute consultation with one of our certified accountants.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a href="#contact" class="btn btn-dark">Book free consultation</a>
+                        <a href="tel:+15550142290" class="btn btn-ghost"><svg class="icon"><use href="#i-phone"/></svg>+1 (555) 014-2290</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. Contact -->
+        <section class="section section-tint" id="contact">
+            <div class="container contact-inner">
+                <div class="contact-info reveal">
+                    <span class="eyebrow">Contact us</span>
+                    <h2>Let's talk about your numbers</h2>
+                    <p>Tell us a little about your business and we will get back to you within one business day.</p>
+                    <ul class="contact-list">
+                        <li>
+                            <span class="icon-circle"><svg class="icon"><use href="#i-pin"/></svg></span>
+                            <span><strong>Visit us</strong>250 Harbor Street, Suite 400<br>Springfield</span>
+                        </li>
+                        <li>
+                            <span class="icon-circle"><svg class="icon"><use href="#i-phone"/></svg></span>
+                            <span><strong>Call us</strong><a href="tel:+15550142290">+1 (555) 014-2290</a></span>
+                        </li>
+                        <li>
+                            <span class="icon-circle"><svg class="icon"><use href="#i-mail"/></svg></span>
+                            <span><strong>Email us</strong><a href="mailto:hello@clearsky-accounting.example">hello@clearsky-accounting.example</a></span>
+                        </li>
+                        <li>
+                            <span class="icon-circle"><svg class="icon"><use href="#i-clock"/></svg></span>
+                            <span><strong>Office hours</strong>Mon – Fri, 9:00 – 18:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="contact-form reveal" id="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name">Full name</label>
+                            <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
+                            <p class="field-error" id="name-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
+                            <p class="field-error" id="email-error"></p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="phone">Phone <span class="optional">(optional)</span></label>
+                            <input id="phone" name="phone" type="tel" autocomplete="tel">
+                        </div>
+                        <div class="field">
+                            <label for="service">Service</label>
+                            <select id="service" name="service" required aria-describedby="service-error">
+                                <option value="">Select a service</option>
+                                <option>Bookkeeping</option>
+                                <option>Tax planning &amp; returns</option>
+                                <option>Payroll services</option>
+                                <option>Financial advisory</option>
+                                <option>Audit &amp; assurance</option>
+                                <option>Business setup</option>
+                                <option>Not sure yet</option>
+                            </select>
+                            <p class="field-error" id="service-error"></p>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
+                        <p class="field-error" id="message-error"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send message <svg class="icon"><use href="#i-arrow"/></svg></button>
+                    <p class="form-success" id="form-success" role="status" hidden></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 15. Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a class="logo logo-light" href="#home" aria-label="ClearSky Accounting home">
+                    <span class="logo-mark" aria-hidden="true">
+                        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9"/><path d="M9 22v-5M14 22v-9M19 22v-6M24 22V9"/></svg>
+                    </span>
+                    <span class="logo-text">ClearSky<small>Accounting</small></span>
+                </a>
+                <p>Certified accountants helping small businesses, freelancers and families keep their finances clear since 2009.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg class="icon"><use href="#i-facebook"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Bookkeeping</a></li>
+                    <li><a href="#services">Tax planning</a></li>
+                    <li><a href="#services">Payroll</a></li>
+                    <li><a href="#services">Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#team">Our team</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Monthly tax tips and deadline reminders. No spam, ever.</p>
+                <form class="newsletter-form" id="newsletter-form" novalidate>
+                    <label for="newsletter-email" class="visually-hidden">Email address</label>
+                    <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" required>
+                    <button type="submit" class="btn btn-primary btn-small">Subscribe</button>
+                </form>
+                <p class="newsletter-message" id="newsletter-message" role="status"></p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year">2026</span> ClearSky Accounting. All rights reserved.</p>
+            <p><a href="#">Privacy policy</a><a href="#">Terms of service</a></p>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" aria-label="Back to top"><svg class="icon"><use href="#i-up"/></svg></a>
+
+    <script src="script.js"></script>
+</body>
+</html>
