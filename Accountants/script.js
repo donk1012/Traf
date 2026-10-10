@@ -3,7 +3,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Google Apps Script web app that passes the forms on to Telegram (see telegram-bot/SETUP.md).
 // While it is empty, the forms only show their thank-you message and send nothing.
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyKITSEXusm1qKXecnNaxOI8wrFVFvRngXqQPZe4ktuNj1zJIhLdtRmOVYw2Nwpr75Qvw/exec';
 
 const LANG_KEY = 'gcs-lang';
 const THEME_KEY = 'gcs-theme';
