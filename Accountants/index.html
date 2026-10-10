@@ -66,6 +66,28 @@
         <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
         <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
         <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+        <!-- Worn-ink textures for the stamps (stamp.js) -->
+        <filter id="ink-1" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="2" result="grain"/>
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.4" result="speckle"/>
+            <feComposite in="SourceGraphic" in2="speckle" operator="in" result="inked"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="5" result="wobble"/>
+            <feDisplacementMap in="inked" in2="wobble" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="ink-2" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="9" result="grain"/>
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.4" result="speckle"/>
+            <feComposite in="SourceGraphic" in2="speckle" operator="in" result="inked"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="13" result="wobble"/>
+            <feDisplacementMap in="inked" in2="wobble" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="ink-3" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="17" result="grain"/>
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.4" result="speckle"/>
+            <feComposite in="SourceGraphic" in2="speckle" operator="in" result="inked"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="21" result="wobble"/>
+            <feDisplacementMap in="inked" in2="wobble" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
         <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
     </svg>
 
@@ -632,15 +654,16 @@
                             <p class="field-error" id="name-error"></p>
                         </div>
                         <div class="field">
-                            <label for="email" data-i18n="form.email">E-mail</label>
-                            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
-                            <p class="field-error" id="email-error"></p>
+                            <label for="phone" data-i18n="form.phone">Telefon</label>
+                            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required aria-describedby="phone-error">
+                            <p class="field-error" id="phone-error"></p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="field">
-                            <label for="phone"><span data-i18n="form.phone">Telefon</span> <span class="optional" data-i18n="form.optional">(ixtiyoriy)</span></label>
-                            <input id="phone" name="phone" type="tel" autocomplete="tel">
+                            <label for="email"><span data-i18n="form.email">E-mail</span> <span class="optional" data-i18n="form.optional">(ixtiyoriy)</span></label>
+                            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
+                            <p class="field-error" id="email-error"></p>
                         </div>
                         <div class="field">
                             <label for="service" data-i18n="form.service">Xizmat</label>
@@ -672,9 +695,64 @@
                 </form>
             </div>
         </section>
+
+        <!-- 15. Stamp the documents (stamp.js) -->
+        <section class="section" id="stamp" aria-labelledby="stamp-title">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-i18n="stamp.eyebrow">Dam oling</span>
+                    <h2 id="stamp-title" data-i18n="stamp.title">Hujjatga muhr bosing!</h2>
+                    <p data-i18n="stamp.text">Buxgalter ishidagi eng yoqimli lahza — muhr bosish. Muhrni tanlang va hujjatning istalgan joyiga bosing.</p>
+                </div>
+                <div class="stamp-desk reveal">
+                    <div class="paper" id="stamp-paper" tabindex="0" role="button" aria-label="Hisob-faktura: muhr bosish uchun ustiga bosing yoki Enter tugmasini bosing" data-i18n-attr="aria-label:stamp.paperLabel">
+                        <div class="paper-content" aria-hidden="true">
+                            <div class="paper-head">
+                                <p><strong data-i18n="stamp.docTitle">HISOB-FAKTURA</strong> <span>№ 0145</span></p>
+                                <span class="paper-date" id="paper-date">10.10.2026</span>
+                            </div>
+                            <p class="paper-party"><span data-i18n="stamp.from">Ijrochi:</span> Good Consult Service</p>
+                            <p class="paper-party"><span data-i18n="stamp.to">Buyurtmachi:</span> <span data-i18n="stamp.client">“Sizning kompaniyangiz” MChJ</span></p>
+                            <table class="paper-table">
+                                <thead>
+                                    <tr><th>№</th><th data-i18n="stamp.colService">Xizmat</th><th data-i18n="stamp.colSum">Summa</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td data-i18n="services.s1.title">Buxgalteriya hisobi</td><td>3&nbsp;000&nbsp;000</td></tr>
+                                    <tr><td>2</td><td data-i18n="services.s2.title">Soliq hisobotlari</td><td>1&nbsp;500&nbsp;000</td></tr>
+                                    <tr><td>3</td><td data-i18n="services.s4.title">Moliyaviy maslahat</td><td>500&nbsp;000</td></tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr><td></td><td data-i18n="stamp.total">Jami</td><td>5&nbsp;000&nbsp;000 <span data-i18n="pricing.currency">so‘m</span></td></tr>
+                                </tfoot>
+                            </table>
+                            <div class="paper-signs">
+                                <p><span data-i18n="stamp.head">Rahbar</span><span class="sign-line"></span></p>
+                                <p><span data-i18n="stamp.accountant">Bosh buxgalter</span><span class="sign-line"></span></p>
+                                <span class="stamp-spot" data-i18n="stamp.spot">M.O‘.</span>
+                            </div>
+                        </div>
+                        <div class="paper-stamps" id="paper-stamps" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="stamp-tools">
+                        <p class="stamp-tools-title" data-i18n="stamp.choose">Muhrni tanlang</p>
+                        <div class="stamp-picker" role="group" aria-label="Muhr turi" data-i18n-attr="aria-label:stamp.pickerLabel">
+                            <button type="button" class="stamp-option" data-stamp="seal" aria-pressed="true"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.seal">Muhr</span></button>
+                            <button type="button" class="stamp-option" data-stamp="approved" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.approved">Tasdiqlandi</span></button>
+                            <button type="button" class="stamp-option" data-stamp="paid" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.paid">To‘landi</span></button>
+                            <button type="button" class="stamp-option" data-stamp="copy" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.copy">Nusxasi to‘g‘ri</span></button>
+                        </div>
+                        <p class="stamp-count" id="stamp-count">Bosilgan muhrlar: 0</p>
+                        <button type="button" class="btn btn-outline btn-small" id="stamp-clear" data-i18n="stamp.clear">Tozalash</button>
+                        <p class="stamp-status" id="stamp-status" role="status"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- 15. Footer -->
+    <!-- 16. Footer -->
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-brand">
@@ -731,5 +809,6 @@
 
     <script src="translations.js"></script>
     <script src="script.js"></script>
+    <script src="stamp.js"></script>
 </body>
 </html>

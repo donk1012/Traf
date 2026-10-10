@@ -77,6 +77,7 @@ function setLanguage(lang) {
     updateNavToggleLabel();
     updateBillingNotes();
     refreshFormMessages();
+    document.dispatchEvent(new CustomEvent('gcs:language'));
 }
 
 langButtons.forEach((button) => {
@@ -301,10 +302,17 @@ const formStatus = document.querySelector('#form-status');
 let contactState = ''; // '', 'sending', 'success' or 'error'
 let submittedName = '';
 
+// Digits, spaces, "+", "-" and brackets only, with 9 to 15 digits in total
+function isPhoneNumber(value) {
+    const digits = value.replace(/\D/g, '');
+    return /^\+?[\d\s()-]+$/.test(value.trim()) && digits.length >= 9 && digits.length <= 15;
+}
+
 // Each check returns true, or the key of the error message in `messages`
 const validators = {
     name: (value) => value.trim().length >= 2 || 'errorName',
-    email: (value) => emailPattern.test(value.trim()) || 'errorEmail',
+    phone: (value) => isPhoneNumber(value) || 'errorPhone',
+    email: (value) => value.trim() === '' || emailPattern.test(value.trim()) || 'errorEmail',
     service: (value) => value !== '' || 'errorService',
     message: (value) => value.trim().length >= 10 || 'errorMessage',
 };

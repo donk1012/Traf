@@ -58,7 +58,7 @@ function doPost(e) {
     lang: raw.lang === 'ru' ? 'ru' : 'uz',
   };
 
-  const complete = EMAIL_PATTERN.test(data.email) && (data.type === 'newsletter' || (data.name && data.message));
+  const complete = data.type === 'newsletter' ? EMAIL_PATTERN.test(data.email) : Boolean(data.name && data.phone && data.message);
   if (!complete) {
     return reply({ ok: false, error: 'invalid' });
   }
@@ -93,7 +93,7 @@ function contactText(data) {
     '📩 Saytdan yangi so‘rov',
     '',
     `👤 Ism: ${data.name}`,
-    `📧 E-mail: ${data.email}`,
+    `📧 E-mail: ${data.email || '—'}`,
     `📞 Telefon: ${data.phone || '—'}`,
     `🧾 Xizmat: ${data.service || '—'}`,
     `💬 Xabar: ${data.message}`,
