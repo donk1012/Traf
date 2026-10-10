@@ -242,7 +242,7 @@ const translations = {
         'contact.title': 'Давайте обсудим ваши цифры',
         'contact.text': 'Расскажите немного о своём бизнесе — мы свяжемся с вами в течение одного рабочего дня.',
         'contact.addressLabel': 'Адрес',
-        'contact.address': 'г. Ташкент, Мирабадский район',
+        'contact.address': 'г. Ташкент, Depo Mall',
         'contact.phoneLabel': 'Телефон',
         'contact.emailLabel': 'E-mail',
         'contact.hoursLabel': 'Часы работы',
