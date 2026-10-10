@@ -291,6 +291,9 @@ const messages = {
         errorMessage: 'Iltimos, batafsilroq yozing (kamida 10 ta belgi).',
         formSuccess: 'Rahmat, {name}! Xabaringiz qabul qilindi — bir ish kuni ichida javob beramiz.',
         newsletterSuccess: 'Obuna bo‘lganingiz uchun rahmat!',
+        newsletterError: 'Obuna bo‘lib bo‘lmadi. Iltimos, qayta urinib ko‘ring.',
+        sending: 'Yuborilmoqda…',
+        errorSend: 'Xabar yuborilmadi. Iltimos, qayta urinib ko‘ring yoki +998 93 006 77 99 raqamiga qo‘ng‘iroq qiling.',
     },
     ru: {
         navOpen: 'Открыть меню',
@@ -303,5 +306,8 @@ const messages = {
         errorMessage: 'Пожалуйста, напишите подробнее (не менее 10 символов).',
         formSuccess: 'Спасибо, {name}! Ваше сообщение получено — мы ответим в течение одного рабочего дня.',
         newsletterSuccess: 'Спасибо за подписку!',
+        newsletterError: 'Не удалось оформить подписку. Попробуйте ещё раз.',
+        sending: 'Отправка…',
+        errorSend: 'Не удалось отправить сообщение. Попробуйте ещё раз или позвоните по номеру +998 93 006 77 99.',
     },
 };

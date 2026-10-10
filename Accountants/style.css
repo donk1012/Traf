@@ -1889,13 +1889,40 @@ ol {
     display: none;
 }
 
-.form-success {
-    background-color: var(--success-bg);
+.form-status {
     border-radius: 12px;
-    color: var(--success-text);
     font-weight: 700;
     margin-top: 16px;
     padding: 14px 18px;
+}
+
+.form-status.is-sending {
+    background-color: var(--soft);
+    color: var(--soft-text);
+}
+
+.form-status.is-success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+}
+
+.form-status.is-error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+}
+
+.btn:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
+}
+
+.hp-field {
+    height: 1px;
+    left: -9999px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
 }
 
 /* ---------- 15. Footer ---------- */

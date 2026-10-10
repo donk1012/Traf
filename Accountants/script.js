@@ -1,6 +1,10 @@
 const root = document.documentElement;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Google Apps Script web app that passes the forms on to Telegram (see telegram-bot/SETUP.md).
+// While it is empty, the forms only show their thank-you message and send nothing.
+const FORM_ENDPOINT = '';
+
 const LANG_KEY = 'gcs-lang';
 const THEME_KEY = 'gcs-theme';
 
@@ -274,12 +278,27 @@ billingToggle.addEventListener('click', () => setBilling(!isYearly()));
 labelMonthly.addEventListener('click', () => setBilling(false));
 labelYearly.addEventListener('click', () => setBilling(true));
 
+// ---------- Sending forms ----------
+
+async function sendForm(payload) {
+    if (!FORM_ENDPOINT) {
+        console.warn('FORM_ENDPOINT is empty, so this form was not sent anywhere.');
+        return;
+    }
+    // A plain-text body keeps this a "simple" request, which Apps Script accepts from any site
+    const response = await fetch(FORM_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
+    const result = await response.json();
+    if (!result.ok) {
+        throw new Error(result.error || 'send_failed');
+    }
+}
+
 // ---------- Contact form ----------
-// The form is validated in the browser only. Connect it to your own backend
-// or a form service (set the form's action/method) to actually receive messages.
 
 const contactForm = document.querySelector('#contact-form');
-const formSuccess = document.querySelector('#form-success');
+const contactSubmit = contactForm.querySelector('[type="submit"]');
+const formStatus = document.querySelector('#form-status');
+let contactState = ''; // '', 'sending', 'success' or 'error'
 let submittedName = '';
 
 // Each check returns true, or the key of the error message in `messages`
@@ -312,48 +331,93 @@ Object.keys(validators).forEach((fieldName) => {
     input.addEventListener('change', revalidate);
 });
 
-function showFormSuccess() {
-    formSuccess.textContent = t('formSuccess').replace('{name}', submittedName);
-    formSuccess.hidden = false;
+function showContactStatus() {
+    const keys = { sending: 'sending', success: 'formSuccess', error: 'errorSend' };
+    formStatus.hidden = !contactState;
+    formStatus.className = `form-status is-${contactState}`;
+    formStatus.textContent = contactState ? t(keys[contactState]).replace('{name}', submittedName) : '';
 }
 
-contactForm.addEventListener('submit', (event) => {
+contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (contactState === 'sending') {
+        return;
+    }
 
     const allValid = Object.keys(validators).map(validateField).every(Boolean);
     if (!allValid) {
-        formSuccess.hidden = true;
+        contactState = '';
+        showContactStatus();
         contactForm.querySelector('[aria-invalid="true"]').focus();
         return;
     }
 
-    submittedName = contactForm.elements.namedItem('name').value.trim().split(/\s+/)[0];
-    showFormSuccess();
-    contactForm.reset();
+    const field = (name) => contactForm.elements.namedItem(name);
+    submittedName = field('name').value.trim().split(/\s+/)[0];
+    contactState = 'sending';
+    contactSubmit.disabled = true;
+    showContactStatus();
+
+    try {
+        await sendForm({
+            type: 'contact',
+            name: field('name').value.trim(),
+            email: field('email').value.trim(),
+            phone: field('phone').value.trim(),
+            service: field('service').selectedOptions[0].textContent,
+            message: field('message').value.trim(),
+            lang: currentLang,
+            website: field('website').value,
+        });
+        contactState = 'success';
+        contactForm.reset();
+    } catch (error) {
+        console.error(error);
+        contactState = 'error';
+    }
+    contactSubmit.disabled = false;
+    showContactStatus();
 });
 
 // ---------- Newsletter ----------
 
 const newsletterForm = document.querySelector('#newsletter-form');
+const newsletterInput = newsletterForm.querySelector('input');
+const newsletterButton = newsletterForm.querySelector('button');
 const newsletterMessage = document.querySelector('#newsletter-message');
-let newsletterState = '';
+let newsletterState = ''; // '', 'invalid', 'sending', 'success' or 'error'
 
 function showNewsletterMessage() {
-    const keys = { invalid: 'errorEmail', success: 'newsletterSuccess' };
+    const keys = { invalid: 'errorEmail', sending: 'sending', success: 'newsletterSuccess', error: 'newsletterError' };
     newsletterMessage.textContent = newsletterState ? t(keys[newsletterState]) : '';
 }
 
-newsletterForm.addEventListener('submit', (event) => {
+newsletterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const input = newsletterForm.querySelector('input');
+    if (newsletterState === 'sending') {
+        return;
+    }
 
-    if (emailPattern.test(input.value.trim())) {
+    if (!emailPattern.test(newsletterInput.value.trim())) {
+        newsletterState = 'invalid';
+        showNewsletterMessage();
+        newsletterInput.focus();
+        return;
+    }
+
+    newsletterState = 'sending';
+    newsletterButton.disabled = true;
+    showNewsletterMessage();
+
+    try {
+        await sendForm({ type: 'newsletter', email: newsletterInput.value.trim(), lang: currentLang });
         newsletterState = 'success';
         newsletterForm.reset();
-    } else {
-        newsletterState = 'invalid';
-        input.focus();
+    } catch (error) {
+        console.error(error);
+        newsletterState = 'error';
     }
+    newsletterButton.disabled = false;
     showNewsletterMessage();
 });
 
@@ -364,9 +428,7 @@ function refreshFormMessages() {
             validateField(fieldName);
         }
     });
-    if (!formSuccess.hidden) {
-        showFormSuccess();
-    }
+    showContactStatus();
     showNewsletterMessage();
 }
 

@@ -662,8 +662,13 @@
                         <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
                         <p class="field-error" id="message-error"></p>
                     </div>
+                    <!-- Spam trap: people never see this field, bots fill it in and their message is dropped -->
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block"><span data-i18n="form.submit">Xabar yuborish</span> <svg class="icon"><use href="#i-arrow"/></svg></button>
-                    <p class="form-success" id="form-success" role="status" hidden></p>
+                    <p class="form-status" id="form-status" role="status" hidden></p>
                 </form>
             </div>
         </section>
