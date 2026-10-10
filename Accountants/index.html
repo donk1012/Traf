@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ClearSky Accounting — certified accountants for bookkeeping, tax planning, payroll and financial advice for small businesses and individuals.">
-    <title>ClearSky Accounting</title>
+    <meta name="description" content="Good Consult Service — buxgalteriya hisobi, soliq hisobotlari, ish haqi va moliyaviy maslahat bo‘yicha sertifikatlangan mutaxassislar." data-i18n-attr="content:meta.description">
+    <title data-i18n="meta.title">Good Consult Service — buxgalteriya kompaniyasi</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Mulish:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Mulish:wght@400;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
-    <script>document.documentElement.classList.add('js');</script>
+    <script>
+        // Pick the theme and language before the page paints, so it never flashes the wrong one.
+        // Saved choice first, otherwise the system theme and the browser language.
+        (function () {
+            var root = document.documentElement;
+            var theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            var lang = (navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'uz';
+            try {
+                theme = localStorage.getItem('gcs-theme') || theme;
+                lang = localStorage.getItem('gcs-lang') || lang;
+            } catch (e) {}
+            root.classList.add('js');
+            root.dataset.theme = theme;
+            root.dataset.lang = lang;
+            if (lang !== 'uz') {
+                // Hide the Uzbek text until script.js has swapped in the translation
+                root.classList.add('i18n-pending');
+                setTimeout(function () { root.classList.remove('i18n-pending'); }, 2000);
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Icon sprite: each icon is reused below with <use href="#icon-name"> -->
@@ -18,7 +39,7 @@
         <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></symbol>
         <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
         <symbol id="i-trend" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
-        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
+        <symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
         <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
         <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
         <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
@@ -40,37 +61,48 @@
         <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
         <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
         <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></symbol>
-        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+        <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
         <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
         <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
         <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
     </svg>
 
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="skip">Asosiy mazmunga o‘tish</a>
 
     <header class="site-header">
         <div class="container header-inner">
-            <a class="logo" href="#home" aria-label="ClearSky Accounting home">
-                <span class="logo-mark" aria-hidden="true">
-                    <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9"/><path d="M9 22v-5M14 22v-9M19 22v-6M24 22V9"/></svg>
+            <a class="logo" href="#home" aria-label="Good Consult Service — bosh sahifa" data-i18n-attr="aria-label:logo.label">
+                <img class="logo-mark" src="images/logo-mark.png" alt="" width="93" height="48">
+                <span class="logo-text">
+                    <span class="logo-name"><b>Good</b> Consult Service</span>
+                    <small data-i18n="logo.tagline">Buxgalteriya kompaniyasi</small>
                 </span>
-                <span class="logo-text">ClearSky<small>Accounting</small></span>
             </a>
 
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-                <span></span><span></span><span></span>
-            </button>
-
-            <nav class="site-nav" id="site-nav" aria-label="Main">
-                <a href="#home" class="is-active">Home</a>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#team">Team</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-                <a href="#contact" class="btn btn-primary btn-small nav-cta">Free consultation</a>
+            <nav class="site-nav" id="site-nav" aria-label="Asosiy menyu" data-i18n-attr="aria-label:nav.label">
+                <a href="#services" data-i18n="nav.services">Xizmatlar</a>
+                <a href="#about" data-i18n="nav.about">Biz haqimizda</a>
+                <a href="#pricing" data-i18n="nav.pricing">Narxlar</a>
+                <a href="#faq" data-i18n="nav.faq">Savollar</a>
+                <a href="#contact" data-i18n="nav.contact">Aloqa</a>
+                <a href="#contact" class="btn btn-primary btn-small nav-cta" data-i18n="nav.cta">Bepul maslahat</a>
             </nav>
+
+            <div class="header-tools">
+                <div class="lang-switch" role="group" aria-label="Til / Язык">
+                    <button type="button" data-lang="uz" lang="uz" title="O‘zbekcha" aria-pressed="true">UZ</button>
+                    <button type="button" data-lang="ru" lang="ru" title="Русский" aria-pressed="false">RU</button>
+                </div>
+                <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Tungi rejim" data-i18n-attr="aria-label:theme.toggle">
+                    <svg class="icon icon-moon"><use href="#i-moon"/></svg>
+                    <svg class="icon icon-sun"><use href="#i-sun"/></svg>
+                </button>
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menyuni ochish">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -80,72 +112,72 @@
         <section class="hero" id="home">
             <div class="container hero-inner">
                 <div class="hero-content">
-                    <span class="eyebrow">Certified accountants since 2009</span>
-                    <h1>Clear numbers.<br>Confident decisions.</h1>
-                    <p class="lead">We take care of your bookkeeping, taxes and payroll so you can focus on growing your business. Proactive advice from certified accountants who actually pick up the phone.</p>
+                    <span class="eyebrow" data-i18n="hero.eyebrow">2009-yildan beri ishonchli buxgalterlar</span>
+                    <h1 data-i18n="hero.title">Aniq raqamlar.<br>Ishonchli qarorlar.</h1>
+                    <p class="lead" data-i18n="hero.lead">Buxgalteriya, soliqlar va ish haqi hisobini biz yuritamiz — siz esa biznesingizni rivojlantirishga e’tibor qaratasiz. Har doim aloqada bo‘ladigan sertifikatlangan mutaxassislardan amaliy maslahatlar.</p>
                     <div class="hero-actions">
-                        <a href="#contact" class="btn btn-primary">Book a free consultation <svg class="icon"><use href="#i-arrow"/></svg></a>
-                        <a href="#services" class="btn btn-outline">Explore services</a>
+                        <a href="#contact" class="btn btn-primary"><span data-i18n="hero.cta">Bepul maslahat olish</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <a href="#services" class="btn btn-outline" data-i18n="hero.secondary">Xizmatlarimiz</a>
                     </div>
                     <div class="hero-proof">
                         <div class="avatar-stack" aria-hidden="true">
-                            <span>LB</span><span>MR</span><span>PN</span><span>+</span>
+                            <span data-i18n="people.an">AN</span><span data-i18n="people.sa">SA</span><span data-i18n="people.nx">NX</span><span>+</span>
                         </div>
-                        <p><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><strong>4.9 / 5</strong> from 600+ happy clients</p>
+                        <p><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span data-i18n="hero.proof"><strong>4,9 / 5</strong> — 600 dan ortiq mamnun mijozlar bahosi</span></p>
                     </div>
                 </div>
 
                 <div class="hero-visual" aria-hidden="true">
                     <div class="dash-card">
                         <div class="dash-head">
-                            <span class="dash-title">Monthly overview</span>
-                            <span class="dash-badge">Oct 2026</span>
+                            <span class="dash-title" data-i18n="dash.title">Oylik hisobot</span>
+                            <span class="dash-badge" data-i18n="dash.month">Oktyabr 2026</span>
                         </div>
-                        <p class="dash-label">Net profit</p>
-                        <p class="dash-value">$48,250 <span class="dash-trend">+12.4%</span></p>
+                        <p class="dash-label" data-i18n="dash.label">Sof foyda</p>
+                        <p class="dash-value"><span data-i18n="dash.value">48,2 mln so‘m</span> <span class="dash-trend">+12,4%</span></p>
                         <div class="dash-chart">
-                            <div class="bar" style="--h: 42%"><span>May</span></div>
-                            <div class="bar" style="--h: 58%"><span>Jun</span></div>
-                            <div class="bar" style="--h: 50%"><span>Jul</span></div>
-                            <div class="bar" style="--h: 68%"><span>Aug</span></div>
-                            <div class="bar" style="--h: 74%"><span>Sep</span></div>
-                            <div class="bar bar-current" style="--h: 92%"><span>Oct</span></div>
+                            <div class="bar" style="--h: 42%"><span data-i18n="dash.m5">May</span></div>
+                            <div class="bar" style="--h: 58%"><span data-i18n="dash.m6">Iyun</span></div>
+                            <div class="bar" style="--h: 50%"><span data-i18n="dash.m7">Iyul</span></div>
+                            <div class="bar" style="--h: 68%"><span data-i18n="dash.m8">Avg</span></div>
+                            <div class="bar" style="--h: 74%"><span data-i18n="dash.m9">Sen</span></div>
+                            <div class="bar bar-current" style="--h: 92%"><span data-i18n="dash.m10">Okt</span></div>
                         </div>
                         <div class="dash-legend">
-                            <div><span class="dot dot-in"></span>Income <strong>$62,750</strong></div>
-                            <div><span class="dot dot-out"></span>Expenses <strong>$14,500</strong></div>
+                            <div><span class="dot dot-in"></span><span data-i18n="dash.income">Daromad</span> <strong data-i18n="dash.incomeValue">62,7 mln</strong></div>
+                            <div><span class="dot dot-out"></span><span data-i18n="dash.expenses">Xarajatlar</span> <strong data-i18n="dash.expensesValue">14,5 mln</strong></div>
                         </div>
                     </div>
                     <div class="float-card float-top">
                         <span class="float-icon"><svg class="icon"><use href="#i-check"/></svg></span>
-                        <div><strong>Tax return filed</strong><small>5 days before deadline</small></div>
+                        <div><strong data-i18n="dash.taxTitle">Soliq hisoboti topshirildi</strong><small data-i18n="dash.taxText">Muddatdan 5 kun oldin</small></div>
                     </div>
                     <div class="float-card float-bottom">
                         <span class="float-icon"><svg class="icon"><use href="#i-users"/></svg></span>
-                        <div><strong>Payroll processed</strong><small>24 employees paid</small></div>
+                        <div><strong data-i18n="dash.payTitle">Ish haqi hisoblandi</strong><small data-i18n="dash.payText">24 nafar xodimga</small></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 2. Stats -->
-        <section class="stats" aria-label="ClearSky in numbers">
+        <section class="stats" aria-label="Raqamlarda" data-i18n-attr="aria-label:stats.label">
             <div class="container stats-grid">
                 <div class="stat">
                     <p class="stat-number"><span data-count="15">15</span>+</p>
-                    <p class="stat-label">Years of experience</p>
+                    <p class="stat-label" data-i18n="stats.years">Yillik tajriba</p>
                 </div>
                 <div class="stat">
-                    <p class="stat-number"><span data-count="1200">1,200</span>+</p>
-                    <p class="stat-label">Businesses served</p>
+                    <p class="stat-number"><span data-count="1200">1&nbsp;200</span>+</p>
+                    <p class="stat-label" data-i18n="stats.clients">Xizmat ko‘rsatilgan korxonalar</p>
                 </div>
                 <div class="stat">
-                    <p class="stat-number">$<span data-count="38">38</span>M</p>
-                    <p class="stat-label">Saved in taxes for clients</p>
+                    <p class="stat-number"><span data-count="100">100</span>%</p>
+                    <p class="stat-label" data-i18n="stats.onTime">Hisobotlar o‘z vaqtida topshiriladi</p>
                 </div>
                 <div class="stat">
                     <p class="stat-number"><span data-count="98">98</span>%</p>
-                    <p class="stat-label">Client retention rate</p>
+                    <p class="stat-label" data-i18n="stats.retention">Mijozlar biz bilan qoladi</p>
                 </div>
             </div>
         </section>
@@ -154,46 +186,46 @@
         <section class="section" id="services">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">What we do</span>
-                    <h2>Accounting services built around you</h2>
-                    <p>From day-to-day bookkeeping to long-term financial strategy, our team covers every number your business depends on.</p>
+                    <span class="eyebrow" data-i18n="services.eyebrow">Xizmatlar</span>
+                    <h2 data-i18n="services.title">Sizga moslashtirilgan buxgalteriya xizmatlari</h2>
+                    <p data-i18n="services.text">Kundalik hisob-kitobdan tortib uzoq muddatli moliyaviy strategiyagacha — biznesingiz tayanadigan har bir raqamni nazorat qilamiz.</p>
                 </div>
                 <div class="services-grid">
                     <article class="service-card reveal">
                         <span class="icon-box"><svg class="icon"><use href="#i-book"/></svg></span>
-                        <h3>Bookkeeping</h3>
-                        <p>Accurate, up-to-date books reconciled every month, with clear reports you can actually read.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <h3 data-i18n="services.s1.title">Buxgalteriya hisobi</h3>
+                        <p data-i18n="services.s1.text">Har oy solishtiriladigan aniq va dolzarb hisob, tushunarli hisobotlar bilan.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                     <article class="service-card reveal">
                         <span class="icon-box"><svg class="icon"><use href="#i-file"/></svg></span>
-                        <h3>Tax planning &amp; returns</h3>
-                        <p>Year-round tax strategy and on-time filing for individuals, sole traders and companies.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <h3 data-i18n="services.s2.title">Soliq hisobotlari</h3>
+                        <p data-i18n="services.s2.text">Jismoniy shaxslar va kompaniyalar uchun yil davomida soliq rejalashtirish va hisobotlarni o‘z vaqtida topshirish.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                     <article class="service-card reveal">
                         <span class="icon-box"><svg class="icon"><use href="#i-users"/></svg></span>
-                        <h3>Payroll services</h3>
-                        <p>Pay your team correctly and on time, with every deduction, payslip and filing handled.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <h3 data-i18n="services.s3.title">Ish haqi hisobi</h3>
+                        <p data-i18n="services.s3.text">Xodimlaringizning ish haqi to‘g‘ri va o‘z vaqtida hisoblanadi — barcha ushlanmalar va hisobotlar bilan.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                     <article class="service-card reveal">
                         <span class="icon-box"><svg class="icon"><use href="#i-trend"/></svg></span>
-                        <h3>Financial advisory</h3>
-                        <p>Budgets, forecasts and cash-flow plans that turn your numbers into confident decisions.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <h3 data-i18n="services.s4.title">Moliyaviy maslahat</h3>
+                        <p data-i18n="services.s4.text">Raqamlaringizni ishonchli qarorlarga aylantiradigan byudjet, prognoz va pul oqimi rejalari.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                     <article class="service-card reveal">
-                        <span class="icon-box"><svg class="icon"><use href="#i-shield"/></svg></span>
-                        <h3>Audit &amp; assurance</h3>
-                        <p>Independent audits and reviews that build trust with lenders, investors and partners.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <span class="icon-box"><svg class="icon"><use href="#i-refresh"/></svg></span>
+                        <h3 data-i18n="services.s5.title">Buxgalteriyani tiklash</h3>
+                        <p data-i18n="services.s5.text">Kechikkan yoki chalkashib ketgan hisobni tartibga keltiramiz va soliq xatarlarini kamaytiramiz.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                     <article class="service-card reveal">
                         <span class="icon-box"><svg class="icon"><use href="#i-briefcase"/></svg></span>
-                        <h3>Business setup</h3>
-                        <p>Choosing the right structure, registering your company and setting up your books from day one.</p>
-                        <a href="#contact" class="text-link">Learn more <svg class="icon"><use href="#i-arrow"/></svg></a>
+                        <h3 data-i18n="services.s6.title">Biznesni ro‘yxatdan o‘tkazish</h3>
+                        <p data-i18n="services.s6.text">To‘g‘ri tashkiliy shaklni tanlash, kompaniyani ro‘yxatdan o‘tkazish va hisobni birinchi kundan yo‘lga qo‘yish.</p>
+                        <a href="#contact" class="text-link"><span data-i18n="services.more">Batafsil</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                     </article>
                 </div>
             </div>
@@ -204,32 +236,32 @@
             <div class="container about-inner">
                 <div class="about-visual reveal" aria-hidden="true">
                     <div class="ledger-card">
-                        <p class="ledger-title">This month's checklist</p>
+                        <p class="ledger-title" data-i18n="about.ledgerTitle">Shu oydagi vazifalar</p>
                         <ul>
-                            <li><span>Bank reconciliation</span><em class="pill pill-done">Done</em></li>
-                            <li><span>Sales tax return</span><em class="pill pill-done">Filed</em></li>
-                            <li><span>Payroll &amp; payslips</span><em class="pill pill-done">Paid</em></li>
-                            <li><span>Cash-flow forecast</span><em class="pill pill-progress">Updating</em></li>
+                            <li><span data-i18n="about.task1">Bank ko‘chirmalarini solishtirish</span><em class="pill pill-done" data-i18n="about.done">Bajarildi</em></li>
+                            <li><span data-i18n="about.task2">QQS hisoboti</span><em class="pill pill-done" data-i18n="about.filed">Topshirildi</em></li>
+                            <li><span data-i18n="about.task3">Ish haqi va hisob varaqlari</span><em class="pill pill-done" data-i18n="about.paid">To‘landi</em></li>
+                            <li><span data-i18n="about.task4">Pul oqimi prognozi</span><em class="pill pill-progress" data-i18n="about.progress">Jarayonda</em></li>
                         </ul>
                     </div>
                     <div class="about-badge">
-                        <strong>Est.</strong>
+                        <strong data-i18n="about.founded">Asos solingan</strong>
                         <span>2009</span>
                     </div>
-                    <blockquote class="about-quote">“We don't just do your books — we help you understand them.”</blockquote>
+                    <blockquote class="about-quote" data-i18n="about.quote">“Biz shunchaki hisobingizni yuritmaymiz — uni tushunishingizga yordam beramiz.”</blockquote>
                 </div>
                 <div class="about-content reveal">
-                    <span class="eyebrow">About us</span>
-                    <h2>A modern accounting firm with old-fashioned values</h2>
-                    <p>ClearSky started with a simple idea: small businesses deserve the same quality of financial advice as large corporations, without the jargon or the surprise invoices.</p>
-                    <p>Today our team of certified accountants supports more than 1,200 business owners, freelancers and families. We combine cloud technology with a personal relationship, so you always know who is looking after your numbers.</p>
+                    <span class="eyebrow" data-i18n="about.eyebrow">Biz haqimizda</span>
+                    <h2 data-i18n="about.title">Zamonaviy yondashuv, an’anaviy qadriyatlar</h2>
+                    <p data-i18n="about.p1">Good Consult Service oddiy g‘oyadan boshlangan: kichik va o‘rta biznes ham yirik kompaniyalar kabi sifatli moliyaviy maslahatga loyiq — murakkab atamalarsiz va kutilmagan to‘lovlarsiz.</p>
+                    <p data-i18n="about.p2">Bugun sertifikatlangan buxgalterlar jamoamiz 1 200 dan ortiq tadbirkor va oilalarga xizmat ko‘rsatadi. Biz zamonaviy texnologiyalarni shaxsiy yondashuv bilan uyg‘unlashtiramiz — raqamlaringiz bilan kim shug‘ullanayotganini doim bilasiz.</p>
                     <ul class="check-list">
-                        <li><svg class="icon"><use href="#i-check"/></svg>Certified accountants on every account</li>
-                        <li><svg class="icon"><use href="#i-check"/></svg>Fixed monthly fees, agreed up front</li>
-                        <li><svg class="icon"><use href="#i-check"/></svg>Works with the cloud software you already use</li>
-                        <li><svg class="icon"><use href="#i-check"/></svg>Plain-English reports every month</li>
+                        <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="about.c1">Har bir mijozga sertifikatlangan buxgalter</span></li>
+                        <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="about.c2">Oldindan kelishilgan qat’iy oylik to‘lov</span></li>
+                        <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="about.c3">1C va boshqa mashhur dasturlarda ishlaymiz</span></li>
+                        <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="about.c4">Har oy tushunarli tilda hisobotlar</span></li>
                     </ul>
-                    <a href="#team" class="btn btn-primary">Meet the team <svg class="icon"><use href="#i-arrow"/></svg></a>
+                    <a href="#team" class="btn btn-primary"><span data-i18n="about.cta">Jamoa bilan tanishing</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
                 </div>
             </div>
         </section>
@@ -238,30 +270,30 @@
         <section class="section" id="why">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Why ClearSky</span>
-                    <h2>Why business owners choose us</h2>
-                    <p>Good accounting is more than correct numbers. It is about being reachable, being proactive and being on your side.</p>
+                    <span class="eyebrow" data-i18n="why.eyebrow">Nega biz</span>
+                    <h2 data-i18n="why.title">Tadbirkorlar nega bizni tanlaydi</h2>
+                    <p data-i18n="why.text">Yaxshi buxgalteriya — bu nafaqat to‘g‘ri raqamlar. Bu doim aloqada bo‘lish, muammolarni oldindan ko‘rish va sizning manfaatingizni himoya qilish.</p>
                 </div>
                 <div class="why-grid">
                     <div class="why-card reveal">
                         <span class="icon-circle"><svg class="icon"><use href="#i-user"/></svg></span>
-                        <h3>Your own accountant</h3>
-                        <p>One dedicated expert who knows your business, not a different call-centre voice every time.</p>
+                        <h3 data-i18n="why.w1.title">Shaxsiy buxgalter</h3>
+                        <p data-i18n="why.w1.text">Biznesingizni yaxshi biladigan bitta mas’ul mutaxassis — har safar yangi odam emas.</p>
                     </div>
                     <div class="why-card reveal">
                         <span class="icon-circle"><svg class="icon"><use href="#i-tag"/></svg></span>
-                        <h3>Transparent pricing</h3>
-                        <p>A fixed monthly fee covering everything in your plan. No hourly billing, no hidden extras.</p>
+                        <h3 data-i18n="why.w2.title">Shaffof narxlar</h3>
+                        <p data-i18n="why.w2.text">Tarifingizdagi barcha xizmatlar uchun qat’iy oylik to‘lov. Soatbay hisob va yashirin to‘lovlar yo‘q.</p>
                     </div>
                     <div class="why-card reveal">
                         <span class="icon-circle"><svg class="icon"><use href="#i-lock"/></svg></span>
-                        <h3>Bank-level security</h3>
-                        <p>Encrypted document portal, two-factor login and strict confidentiality on every file.</p>
+                        <h3 data-i18n="why.w3.title">Ma’lumotlar xavfsizligi</h3>
+                        <p data-i18n="why.w3.text">Shifrlangan hujjat almashinuvi, ikki bosqichli kirish va qat’iy maxfiylik.</p>
                     </div>
                     <div class="why-card reveal">
                         <span class="icon-circle"><svg class="icon"><use href="#i-clock"/></svg></span>
-                        <h3>Fast responses</h3>
-                        <p>Every question answered within one business day, with priority support during tax season.</p>
+                        <h3 data-i18n="why.w4.title">Tezkor javob</h3>
+                        <p data-i18n="why.w4.text">Har bir savolga bir ish kuni ichida javob, hisobot davrida esa ustuvor yordam.</p>
                     </div>
                 </div>
             </div>
@@ -271,30 +303,30 @@
         <section class="section section-tint" id="process">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">How it works</span>
-                    <h2>Getting started is simple</h2>
-                    <p>Switching accountants sounds daunting. We make it painless in four clear steps.</p>
+                    <span class="eyebrow" data-i18n="process.eyebrow">Qanday ishlaymiz</span>
+                    <h2 data-i18n="process.title">Boshlash juda oson</h2>
+                    <p data-i18n="process.text">Buxgalterni almashtirish qiyin tuyuladi. Biz buni to‘rt oddiy qadamda osonlashtiramiz.</p>
                 </div>
                 <ol class="steps">
                     <li class="step reveal">
                         <span class="step-number">01</span>
-                        <h3>Free consultation</h3>
-                        <p>A 30-minute call to understand your business, goals and current challenges.</p>
+                        <h3 data-i18n="process.p1.title">Bepul maslahat</h3>
+                        <p data-i18n="process.p1.text">Biznesingiz, maqsadlaringiz va muammolaringizni tushunish uchun 30 daqiqalik suhbat.</p>
                     </li>
                     <li class="step reveal">
                         <span class="step-number">02</span>
-                        <h3>Tailored proposal</h3>
-                        <p>A clear plan and fixed quote covering exactly the services you need.</p>
+                        <h3 data-i18n="process.p2.title">Shaxsiy taklif</h3>
+                        <p data-i18n="process.p2.text">Sizga kerakli xizmatlar uchun aniq reja va qat’iy narx.</p>
                     </li>
                     <li class="step reveal">
                         <span class="step-number">03</span>
-                        <h3>Easy onboarding</h3>
-                        <p>We contact your previous accountant and move your records over for you.</p>
+                        <h3 data-i18n="process.p3.title">Oson o‘tish</h3>
+                        <p data-i18n="process.p3.text">Oldingi buxgalteringiz bilan o‘zimiz bog‘lanamiz va hujjatlarni qabul qilib olamiz.</p>
                     </li>
                     <li class="step reveal">
                         <span class="step-number">04</span>
-                        <h3>Ongoing support</h3>
-                        <p>Monthly reports, deadline reminders and advice whenever you need it.</p>
+                        <h3 data-i18n="process.p4.title">Doimiy qo‘llab-quvvatlash</h3>
+                        <p data-i18n="process.p4.text">Oylik hisobotlar, muddatlar haqida eslatmalar va kerak bo‘lganda maslahat.</p>
                     </li>
                 </ol>
             </div>
@@ -304,19 +336,19 @@
         <section class="section" id="industries">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Industries</span>
-                    <h2>Specialist knowledge for your sector</h2>
-                    <p>Every industry has its own rules, margins and tax reliefs. Our team knows yours.</p>
+                    <span class="eyebrow" data-i18n="industries.eyebrow">Sohalar</span>
+                    <h2 data-i18n="industries.title">Sohangiz bo‘yicha chuqur bilim</h2>
+                    <p data-i18n="industries.text">Har bir sohaning o‘z qoidalari, marjasi va soliq imtiyozlari bor. Jamoamiz sizning sohangizni yaxshi biladi.</p>
                 </div>
                 <ul class="industry-grid">
-                    <li class="industry reveal"><svg class="icon"><use href="#i-cart"/></svg>Retail &amp; e-commerce</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-coffee"/></svg>Restaurants &amp; hospitality</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-tool"/></svg>Construction &amp; trades</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-heart"/></svg>Healthcare &amp; clinics</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-cpu"/></svg>Technology &amp; startups</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-home"/></svg>Real estate &amp; landlords</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-globe"/></svg>Non-profits &amp; charities</li>
-                    <li class="industry reveal"><svg class="icon"><use href="#i-feather"/></svg>Freelancers &amp; creatives</li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-cart"/></svg><span data-i18n="industries.i1">Savdo va onlayn do‘konlar</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-coffee"/></svg><span data-i18n="industries.i2">Restoran va mehmonxonalar</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-tool"/></svg><span data-i18n="industries.i3">Qurilish</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-heart"/></svg><span data-i18n="industries.i4">Tibbiyot va klinikalar</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-cpu"/></svg><span data-i18n="industries.i5">IT va startaplar</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-home"/></svg><span data-i18n="industries.i6">Ko‘chmas mulk</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-globe"/></svg><span data-i18n="industries.i7">Notijorat tashkilotlar</span></li>
+                    <li class="industry reveal"><svg class="icon"><use href="#i-feather"/></svg><span data-i18n="industries.i8">Frilanserlar va yakka tadbirkorlar</span></li>
                 </ul>
             </div>
         </section>
@@ -325,61 +357,61 @@
         <section class="section section-tint" id="pricing">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Pricing</span>
-                    <h2>Simple plans, fixed monthly fees</h2>
-                    <p>Pick the plan that fits today and change it any time as your business grows.</p>
+                    <span class="eyebrow" data-i18n="pricing.eyebrow">Narxlar</span>
+                    <h2 data-i18n="pricing.title">Oddiy tariflar, qat’iy oylik to‘lov</h2>
+                    <p data-i18n="pricing.text">Bugungi ehtiyojingizga mos tarifni tanlang va biznesingiz o‘sishi bilan istalgan vaqtda o‘zgartiring.</p>
                 </div>
 
                 <div class="billing-switch reveal">
-                    <span id="label-monthly" class="is-current">Monthly</span>
-                    <button class="switch" id="billing-toggle" type="button" role="switch" aria-checked="false" aria-label="Yearly billing"><span></span></button>
-                    <span id="label-yearly">Yearly <em>Save 20%</em></span>
+                    <span id="label-monthly" class="is-current" data-i18n="pricing.monthly">Oylik</span>
+                    <button class="switch" id="billing-toggle" type="button" role="switch" aria-checked="false" aria-label="Yillik to‘lov" data-i18n-attr="aria-label:pricing.switchLabel"><span></span></button>
+                    <span id="label-yearly"><span data-i18n="pricing.yearly">Yillik</span> <em data-i18n="pricing.save">20% tejang</em></span>
                 </div>
 
                 <div class="pricing-grid">
                     <article class="price-card reveal">
-                        <h3>Starter</h3>
-                        <p class="price-desc">For freelancers and sole traders getting organised.</p>
-                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="149" data-yearly="119">149</span><span class="period">/month</span></p>
-                        <p class="price-note">Billed monthly</p>
+                        <h3 data-i18n="pricing.p1.name">Start</h3>
+                        <p class="price-desc" data-i18n="pricing.p1.text">Frilanserlar va yakka tartibdagi tadbirkorlar uchun.</p>
+                        <p class="price"><span class="amount" data-monthly="1 500 000" data-yearly="1 200 000">1 500 000</span><span class="currency" data-i18n="pricing.currency">so‘m</span></p>
+                        <p class="price-note">oyiga · har oy to‘lanadi</p>
                         <ul class="price-features">
-                            <li><svg class="icon"><use href="#i-check"/></svg>Monthly bookkeeping</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Annual tax return</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Quarterly reports</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Email support</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p1.f1">Oylik buxgalteriya hisobi</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p1.f2">Soliq hisobotlari</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p1.f3">Choraklik hisobotlar</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p1.f4">Telegram va e-mail orqali yordam</span></li>
                         </ul>
-                        <a href="#contact" class="btn btn-outline btn-block">Choose Starter</a>
+                        <a href="#contact" class="btn btn-outline btn-block" data-i18n="pricing.p1.cta">Startni tanlash</a>
                     </article>
 
                     <article class="price-card price-card-featured reveal">
-                        <span class="price-badge">Most popular</span>
-                        <h3>Growth</h3>
-                        <p class="price-desc">For small businesses with staff and growing sales.</p>
-                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="299" data-yearly="239">299</span><span class="period">/month</span></p>
-                        <p class="price-note">Billed monthly</p>
+                        <span class="price-badge" data-i18n="pricing.popular">Eng ommabop</span>
+                        <h3 data-i18n="pricing.p2.name">Biznes</h3>
+                        <p class="price-desc" data-i18n="pricing.p2.text">Xodimlari va o‘sib borayotgan savdosi bor kichik biznes uchun.</p>
+                        <p class="price"><span class="amount" data-monthly="3 000 000" data-yearly="2 400 000">3 000 000</span><span class="currency" data-i18n="pricing.currency">so‘m</span></p>
+                        <p class="price-note">oyiga · har oy to‘lanadi</p>
                         <ul class="price-features">
-                            <li><svg class="icon"><use href="#i-check"/></svg>Everything in Starter</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Payroll for up to 15 staff</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Sales tax returns</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Monthly management reports</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Dedicated accountant</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p2.f1">Start tarifidagi hamma narsa</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p2.f2">15 nafargacha xodimning ish haqi</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p2.f3">QQS hisobotlari</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p2.f4">Oylik boshqaruv hisobotlari</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p2.f5">Shaxsiy buxgalter</span></li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary btn-block">Choose Growth</a>
+                        <a href="#contact" class="btn btn-primary btn-block" data-i18n="pricing.p2.cta">Biznesni tanlash</a>
                     </article>
 
                     <article class="price-card reveal">
-                        <h3>Enterprise</h3>
-                        <p class="price-desc">For established companies that need a finance partner.</p>
-                        <p class="price"><span class="currency">$</span><span class="amount" data-monthly="599" data-yearly="479">599</span><span class="period">/month</span></p>
-                        <p class="price-note">Billed monthly</p>
+                        <h3 data-i18n="pricing.p3.name">Korporativ</h3>
+                        <p class="price-desc" data-i18n="pricing.p3.text">Moliyaviy hamkorga muhtoj yirik kompaniyalar uchun.</p>
+                        <p class="price"><span class="amount" data-monthly="6 000 000" data-yearly="4 800 000">6 000 000</span><span class="currency" data-i18n="pricing.currency">so‘m</span></p>
+                        <p class="price-note">oyiga · har oy to‘lanadi</p>
                         <ul class="price-features">
-                            <li><svg class="icon"><use href="#i-check"/></svg>Everything in Growth</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Unlimited payroll</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Budgets &amp; cash-flow forecasts</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Quarterly strategy meetings</li>
-                            <li><svg class="icon"><use href="#i-check"/></svg>Priority phone support</li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p3.f1">Biznes tarifidagi hamma narsa</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p3.f2">Xodimlar soni cheklanmagan</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p3.f3">Byudjet va pul oqimi prognozlari</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p3.f4">Har chorakda strategik uchrashuvlar</span></li>
+                            <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="pricing.p3.f5">Telefon orqali ustuvor yordam</span></li>
                         </ul>
-                        <a href="#contact" class="btn btn-outline btn-block">Choose Enterprise</a>
+                        <a href="#contact" class="btn btn-outline btn-block" data-i18n="pricing.p3.cta">Korporativni tanlash</a>
                     </article>
                 </div>
             </div>
@@ -389,49 +421,49 @@
         <section class="section" id="team">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Our team</span>
-                    <h2>The people behind your numbers</h2>
-                    <p>Qualified, experienced and genuinely friendly. Meet some of the accountants you will work with.</p>
+                    <span class="eyebrow" data-i18n="team.eyebrow">Jamoamiz</span>
+                    <h2 data-i18n="team.title">Raqamlaringiz ortidagi insonlar</h2>
+                    <p data-i18n="team.text">Malakali, tajribali va samimiy. Siz bilan ishlaydigan mutaxassislarimiz bilan tanishing.</p>
                 </div>
                 <div class="team-grid">
                     <article class="team-card reveal">
-                        <div class="team-photo" aria-hidden="true">SM</div>
-                        <h3>Sarah Mitchell</h3>
-                        <p class="team-role">Founder &amp; Managing Partner</p>
-                        <p>20 years advising small businesses on tax and growth strategy.</p>
+                        <div class="team-photo" aria-hidden="true" data-i18n="team.m1.initials">DK</div>
+                        <h3 data-i18n="team.m1.name">Dilnoza Karimova</h3>
+                        <p class="team-role" data-i18n="team.m1.role">Asoschi va boshqaruvchi hamkor</p>
+                        <p data-i18n="team.m1.text">Kichik biznesga soliq va rivojlanish bo‘yicha 20 yillik maslahat tajribasi.</p>
                         <div class="team-social">
-                            <a href="#" aria-label="Sarah Mitchell on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
-                            <a href="#contact" aria-label="Email Sarah Mitchell"><svg class="icon"><use href="#i-mail"/></svg></a>
+                            <a href="#" aria-label="Dilnoza Karimova Telegramda" data-i18n-attr="aria-label:team.m1.telegram"><svg class="icon"><use href="#i-send"/></svg></a>
+                            <a href="#contact" aria-label="Dilnoza Karimovaga yozish" data-i18n-attr="aria-label:team.m1.email"><svg class="icon"><use href="#i-mail"/></svg></a>
                         </div>
                     </article>
                     <article class="team-card reveal">
-                        <div class="team-photo" aria-hidden="true">DC</div>
-                        <h3>David Chen</h3>
-                        <p class="team-role">Head of Tax</p>
-                        <p>Specialist in business and personal tax planning and compliance.</p>
+                        <div class="team-photo" aria-hidden="true" data-i18n="team.m2.initials">JR</div>
+                        <h3 data-i18n="team.m2.name">Jasur Rahimov</h3>
+                        <p class="team-role" data-i18n="team.m2.role">Soliq bo‘limi rahbari</p>
+                        <p data-i18n="team.m2.text">Korxonalar va jismoniy shaxslar soliqlari bo‘yicha mutaxassis.</p>
                         <div class="team-social">
-                            <a href="#" aria-label="David Chen on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
-                            <a href="#contact" aria-label="Email David Chen"><svg class="icon"><use href="#i-mail"/></svg></a>
+                            <a href="#" aria-label="Jasur Rahimov Telegramda" data-i18n-attr="aria-label:team.m2.telegram"><svg class="icon"><use href="#i-send"/></svg></a>
+                            <a href="#contact" aria-label="Jasur Rahimovga yozish" data-i18n-attr="aria-label:team.m2.email"><svg class="icon"><use href="#i-mail"/></svg></a>
                         </div>
                     </article>
                     <article class="team-card reveal">
-                        <div class="team-photo" aria-hidden="true">AH</div>
-                        <h3>Amira Hassan</h3>
-                        <p class="team-role">Payroll Manager</p>
-                        <p>Keeps hundreds of payrolls running smoothly and on schedule.</p>
+                        <div class="team-photo" aria-hidden="true" data-i18n="team.m3.initials">MY</div>
+                        <h3 data-i18n="team.m3.name">Malika Yusupova</h3>
+                        <p class="team-role" data-i18n="team.m3.role">Ish haqi bo‘limi menejeri</p>
+                        <p data-i18n="team.m3.text">Yuzlab korxonalarda ish haqi hisobini o‘z vaqtida va xatosiz yuritadi.</p>
                         <div class="team-social">
-                            <a href="#" aria-label="Amira Hassan on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
-                            <a href="#contact" aria-label="Email Amira Hassan"><svg class="icon"><use href="#i-mail"/></svg></a>
+                            <a href="#" aria-label="Malika Yusupova Telegramda" data-i18n-attr="aria-label:team.m3.telegram"><svg class="icon"><use href="#i-send"/></svg></a>
+                            <a href="#contact" aria-label="Malika Yusupovaga yozish" data-i18n-attr="aria-label:team.m3.email"><svg class="icon"><use href="#i-mail"/></svg></a>
                         </div>
                     </article>
                     <article class="team-card reveal">
-                        <div class="team-photo" aria-hidden="true">JO</div>
-                        <h3>James Okafor</h3>
-                        <p class="team-role">Financial Advisor</p>
-                        <p>Helps owners plan cash flow, funding and long-term investments.</p>
+                        <div class="team-photo" aria-hidden="true" data-i18n="team.m4.initials">BT</div>
+                        <h3 data-i18n="team.m4.name">Bobur Toshmatov</h3>
+                        <p class="team-role" data-i18n="team.m4.role">Moliyaviy maslahatchi</p>
+                        <p data-i18n="team.m4.text">Pul oqimi, moliyalashtirish va investitsiyalarni rejalashtirishda yordam beradi.</p>
                         <div class="team-social">
-                            <a href="#" aria-label="James Okafor on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
-                            <a href="#contact" aria-label="Email James Okafor"><svg class="icon"><use href="#i-mail"/></svg></a>
+                            <a href="#" aria-label="Bobur Toshmatov Telegramda" data-i18n-attr="aria-label:team.m4.telegram"><svg class="icon"><use href="#i-send"/></svg></a>
+                            <a href="#contact" aria-label="Bobur Toshmatovga yozish" data-i18n-attr="aria-label:team.m4.email"><svg class="icon"><use href="#i-mail"/></svg></a>
                         </div>
                     </article>
                 </div>
@@ -442,33 +474,33 @@
         <section class="section section-blue" id="testimonials">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Testimonials</span>
-                    <h2>What our clients say</h2>
-                    <p>Don't just take our word for it. Here is what business owners say about working with ClearSky.</p>
+                    <span class="eyebrow" data-i18n="reviews.eyebrow">Mijozlar fikri</span>
+                    <h2 data-i18n="reviews.title">Mijozlarimiz nima deydi</h2>
+                    <p data-i18n="reviews.text">Bizning so‘zimizga emas, tadbirkorlarning fikriga ishoning.</p>
                 </div>
                 <div class="testimonial-grid">
                     <figure class="testimonial reveal">
-                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-                        <blockquote>“For the first time in ten years I actually understand my accounts. ClearSky found deductions my old accountant missed and saved us thousands.”</blockquote>
+                        <span class="stars" role="img" aria-label="5 dan 5 yulduz" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote data-i18n="reviews.r1.text">“O‘n yil ichida birinchi marta hisobotlarimni tushuna boshladim. Good Consult Service avvalgi buxgalterimiz e’tibordan chetda qoldirgan soliq imtiyozlarini topib, katta mablag‘ni tejab qoldi.”</blockquote>
                         <figcaption>
-                            <span class="avatar" aria-hidden="true">LB</span>
-                            <span><strong>Laura Bennett</strong>Owner, Bennett Bakery</span>
+                            <span class="avatar" aria-hidden="true" data-i18n="people.an">AN</span>
+                            <span><strong data-i18n="reviews.r1.name">Aziza Nazarova</strong><span data-i18n="reviews.r1.role">“Shirin” novvoyxonasi egasi</span></span>
                         </figcaption>
                     </figure>
                     <figure class="testimonial reveal">
-                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-                        <blockquote>“Payroll for 40 people used to eat up two days every month. Now it just happens, and I get a clear summary in my inbox.”</blockquote>
+                        <span class="stars" role="img" aria-label="5 dan 5 yulduz" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote data-i18n="reviews.r2.text">“40 nafar xodimning ish haqi har oy ikki kunimni olardi. Endi hammasi o‘z-o‘zidan bo‘ladi, men esa pochtamga tushunarli hisobot olaman.”</blockquote>
                         <figcaption>
-                            <span class="avatar" aria-hidden="true">MR</span>
-                            <span><strong>Marcus Reid</strong>Director, Reid Construction</span>
+                            <span class="avatar" aria-hidden="true" data-i18n="people.sa">SA</span>
+                            <span><strong data-i18n="reviews.r2.name">Sardor Aliyev</strong><span data-i18n="reviews.r2.role">Qurilish kompaniyasi direktori</span></span>
                         </figcaption>
                     </figure>
                     <figure class="testimonial reveal">
-                        <span class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-                        <blockquote>“Their cash-flow forecast helped us secure our first round of funding. They feel like part of our team, not an outside supplier.”</blockquote>
+                        <span class="stars" role="img" aria-label="5 dan 5 yulduz" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                        <blockquote data-i18n="reviews.r3.text">“Ularning pul oqimi prognozi birinchi investitsiyamizni jalb qilishga yordam berdi. Ular tashqi pudratchi emas, jamoamizning bir qismiday.”</blockquote>
                         <figcaption>
-                            <span class="avatar" aria-hidden="true">PN</span>
-                            <span><strong>Priya Nair</strong>Co-founder, Nimbus Studio</span>
+                            <span class="avatar" aria-hidden="true" data-i18n="people.nx">NX</span>
+                            <span><strong data-i18n="reviews.r3.name">Nodira Xasanova</strong><span data-i18n="reviews.r3.role">IT-studiya hammuassisi</span></span>
                         </figcaption>
                     </figure>
                 </div>
@@ -479,34 +511,34 @@
         <section class="section" id="faq">
             <div class="container faq-inner">
                 <div class="section-head section-head-left reveal">
-                    <span class="eyebrow">FAQ</span>
-                    <h2>Frequently asked questions</h2>
-                    <p>Can't find what you are looking for? <a href="#contact">Send us a message</a> and we will get back to you within one business day.</p>
+                    <span class="eyebrow" data-i18n="faq.eyebrow">Savol-javob</span>
+                    <h2 data-i18n="faq.title">Ko‘p beriladigan savollar</h2>
+                    <p data-i18n="faq.text">Kerakli javobni topmadingizmi? <a href="#contact">Bizga yozing</a> — bir ish kuni ichida javob beramiz.</p>
                 </div>
                 <div class="faq-list reveal">
                     <details class="faq-item" name="faq" open>
-                        <summary>How much does it cost to work with you?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>Our plans start at $149 per month. After a free consultation we give you a fixed quote, so you know exactly what you will pay every month with no hourly billing.</p>
+                        <summary><span data-i18n="faq.q1">Xizmatlaringiz qancha turadi?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a1">Tariflarimiz oyiga 1 500 000 so‘mdan boshlanadi. Bepul maslahatdan so‘ng aniq narxni aytamiz — har oy qancha to‘lashingizni oldindan bilasiz.</p>
                     </details>
                     <details class="faq-item" name="faq">
-                        <summary>My books are months behind. Can you still help?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>Absolutely. Catch-up bookkeeping is one of our most common requests. We will bring your records up to date and then keep them that way.</p>
+                        <summary><span data-i18n="faq.q2">Hisobim bir necha oy orqada qolgan. Yordam bera olasizmi?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a2">Albatta. Buxgalteriyani tiklash — eng ko‘p so‘raladigan xizmatlarimizdan biri. Hisobingizni tartibga keltiramiz va keyin doimiy yuritamiz.</p>
                     </details>
                     <details class="faq-item" name="faq">
-                        <summary>Do I need to be local to work with you?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>No. Most of our clients work with us entirely online through our secure portal and video calls, but you are always welcome to visit our office.</p>
+                        <summary><span data-i18n="faq.q3">Siz bilan ishlash uchun ofisga kelishim shartmi?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a3">Yo‘q. Ko‘pchilik mijozlarimiz biz bilan to‘liq onlayn — xavfsiz kabinet, Telegram va video qo‘ng‘iroqlar orqali ishlaydi. Lekin ofisimizga har doim xush kelibsiz.</p>
                     </details>
                     <details class="faq-item" name="faq">
-                        <summary>Which accounting software do you support?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>We work with all the major cloud accounting platforms. If you do not use one yet, we will recommend and set up the best option for your business.</p>
+                        <summary><span data-i18n="faq.q4">Qaysi dasturlarda ishlaysiz?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a4">Biz 1C va boshqa keng tarqalgan buxgalteriya dasturlarida ishlaymiz. Agar hali dastur tanlamagan bo‘lsangiz, biznesingizga eng mosini tavsiya qilamiz va sozlab beramiz.</p>
                     </details>
                     <details class="faq-item" name="faq">
-                        <summary>How do you keep my financial data secure?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>All documents are shared through an encrypted portal with two-factor authentication. Our team follows strict confidentiality and data-protection policies.</p>
+                        <summary><span data-i18n="faq.q5">Moliyaviy ma’lumotlarim qanday himoyalanadi?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a5">Barcha hujjatlar ikki bosqichli autentifikatsiyaga ega shifrlangan kabinet orqali almashiladi. Jamoamiz qat’iy maxfiylik qoidalariga amal qiladi.</p>
                     </details>
                     <details class="faq-item" name="faq">
-                        <summary>Can I switch accountants in the middle of the year?<svg class="icon"><use href="#i-plus"/></svg></summary>
-                        <p>Yes. We handle the handover with your previous accountant, so the switch is smooth at any time of year.</p>
+                        <summary><span data-i18n="faq.q6">Yil o‘rtasida buxgalterni almashtirsa bo‘ladimi?</span><svg class="icon"><use href="#i-plus"/></svg></summary>
+                        <p data-i18n="faq.a6">Ha. Oldingi buxgalteringizdan hujjatlarni o‘zimiz qabul qilib olamiz, shuning uchun o‘tish yilning istalgan vaqtida muammosiz bo‘ladi.</p>
                     </details>
                 </div>
             </div>
@@ -516,33 +548,33 @@
         <section class="section section-tint" id="blog">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">Resources</span>
-                    <h2>Latest tips from our accountants</h2>
-                    <p>Practical guides to help you keep more of what you earn.</p>
+                    <span class="eyebrow" data-i18n="blog.eyebrow">Foydali maqolalar</span>
+                    <h2 data-i18n="blog.title">Buxgalterlarimizdan so‘nggi maslahatlar</h2>
+                    <p data-i18n="blog.text">Daromadingizning ko‘proq qismini saqlab qolishga yordam beradigan amaliy qo‘llanmalar.</p>
                 </div>
                 <div class="blog-grid">
                     <article class="blog-card reveal">
                         <div class="blog-thumb blog-thumb-1" aria-hidden="true"><svg class="icon"><use href="#i-file"/></svg></div>
                         <div class="blog-body">
-                            <p class="blog-meta"><span class="tag">Tax</span><time datetime="2026-09-28">Sep 28, 2026</time></p>
-                            <h3><a href="#blog">7 tax deductions small businesses often miss</a></h3>
-                            <p>From home-office costs to training courses, here are the expenses worth checking before you file.</p>
+                            <p class="blog-meta"><span class="tag" data-i18n="blog.b1.tag">Soliqlar</span><time datetime="2026-09-28" data-i18n="blog.b1.date">28-sentabr 2026</time></p>
+                            <h3><a href="#blog" data-i18n="blog.b1.title">Kichik biznes ko‘pincha foydalanmaydigan 7 ta soliq imtiyozi</a></h3>
+                            <p data-i18n="blog.b1.text">Hisobot topshirishdan oldin tekshirib ko‘rishga arziydigan xarajatlar va imtiyozlar.</p>
                         </div>
                     </article>
                     <article class="blog-card reveal">
                         <div class="blog-thumb blog-thumb-2" aria-hidden="true"><svg class="icon"><use href="#i-trend"/></svg></div>
                         <div class="blog-body">
-                            <p class="blog-meta"><span class="tag">Cash flow</span><time datetime="2026-09-14">Sep 14, 2026</time></p>
-                            <h3><a href="#blog">Cash flow vs. profit: why the difference matters</a></h3>
-                            <p>A profitable business can still run out of cash. Learn how to spot the warning signs early.</p>
+                            <p class="blog-meta"><span class="tag" data-i18n="blog.b2.tag">Pul oqimi</span><time datetime="2026-09-14" data-i18n="blog.b2.date">14-sentabr 2026</time></p>
+                            <h3><a href="#blog" data-i18n="blog.b2.title">Pul oqimi va foyda: farqi nimada?</a></h3>
+                            <p data-i18n="blog.b2.text">Foydali biznesda ham pul tugab qolishi mumkin. Xavfli belgilarni oldindan qanday sezishni bilib oling.</p>
                         </div>
                     </article>
                     <article class="blog-card reveal">
                         <div class="blog-thumb blog-thumb-3" aria-hidden="true"><svg class="icon"><use href="#i-calendar"/></svg></div>
                         <div class="blog-body">
-                            <p class="blog-meta"><span class="tag">Planning</span><time datetime="2026-08-30">Aug 30, 2026</time></p>
-                            <h3><a href="#blog">Your year-end checklist for stress-free accounts</a></h3>
-                            <p>Ten simple steps to get your books in shape before the financial year closes.</p>
+                            <p class="blog-meta"><span class="tag" data-i18n="blog.b3.tag">Rejalashtirish</span><time datetime="2026-08-30" data-i18n="blog.b3.date">30-avgust 2026</time></p>
+                            <h3><a href="#blog" data-i18n="blog.b3.title">Yil yakuni uchun cheklist: hisobotlarni xotirjam topshiring</a></h3>
+                            <p data-i18n="blog.b3.text">Moliyaviy yil yopilishidan oldin hisobingizni tartibga keltirish uchun 10 ta oddiy qadam.</p>
                         </div>
                     </article>
                 </div>
@@ -554,12 +586,12 @@
             <div class="container">
                 <div class="cta-banner reveal">
                     <div>
-                        <h2 id="cta-title">Ready to take the stress out of your finances?</h2>
-                        <p>Book a free, no-obligation 30-minute consultation with one of our certified accountants.</p>
+                        <h2 id="cta-title" data-i18n="cta.title">Moliyaviy tashvishlardan xalos bo‘lishga tayyormisiz?</h2>
+                        <p data-i18n="cta.text">Sertifikatlangan buxgalterlarimizdan biri bilan bepul va hech qanday majburiyatsiz 30 daqiqalik maslahatga yoziling.</p>
                     </div>
                     <div class="cta-actions">
-                        <a href="#contact" class="btn btn-dark">Book free consultation</a>
-                        <a href="tel:+15550142290" class="btn btn-ghost"><svg class="icon"><use href="#i-phone"/></svg>+1 (555) 014-2290</a>
+                        <a href="#contact" class="btn btn-dark" data-i18n="cta.button">Bepul maslahatga yozilish</a>
+                        <a href="tel:+998710000000" class="btn btn-ghost"><svg class="icon"><use href="#i-phone"/></svg>+998 71 000 00 00</a>
                     </div>
                 </div>
             </div>
@@ -569,25 +601,25 @@
         <section class="section section-tint" id="contact">
             <div class="container contact-inner">
                 <div class="contact-info reveal">
-                    <span class="eyebrow">Contact us</span>
-                    <h2>Let's talk about your numbers</h2>
-                    <p>Tell us a little about your business and we will get back to you within one business day.</p>
+                    <span class="eyebrow" data-i18n="contact.eyebrow">Aloqa</span>
+                    <h2 data-i18n="contact.title">Keling, raqamlaringiz haqida gaplashamiz</h2>
+                    <p data-i18n="contact.text">Biznesingiz haqida qisqacha yozing — bir ish kuni ichida siz bilan bog‘lanamiz.</p>
                     <ul class="contact-list">
                         <li>
                             <span class="icon-circle"><svg class="icon"><use href="#i-pin"/></svg></span>
-                            <span><strong>Visit us</strong>250 Harbor Street, Suite 400<br>Springfield</span>
+                            <span><strong data-i18n="contact.addressLabel">Manzil</strong><span data-i18n="contact.address">Toshkent shahri, Mirobod tumani</span></span>
                         </li>
                         <li>
                             <span class="icon-circle"><svg class="icon"><use href="#i-phone"/></svg></span>
-                            <span><strong>Call us</strong><a href="tel:+15550142290">+1 (555) 014-2290</a></span>
+                            <span><strong data-i18n="contact.phoneLabel">Telefon</strong><a href="tel:+998710000000">+998 71 000 00 00</a></span>
                         </li>
                         <li>
                             <span class="icon-circle"><svg class="icon"><use href="#i-mail"/></svg></span>
-                            <span><strong>Email us</strong><a href="mailto:hello@clearsky-accounting.example">hello@clearsky-accounting.example</a></span>
+                            <span><strong data-i18n="contact.emailLabel">E-mail</strong><a href="mailto:info@goodconsult.uz">info@goodconsult.uz</a></span>
                         </li>
                         <li>
                             <span class="icon-circle"><svg class="icon"><use href="#i-clock"/></svg></span>
-                            <span><strong>Office hours</strong>Mon – Fri, 9:00 – 18:00</span>
+                            <span><strong data-i18n="contact.hoursLabel">Ish vaqti</strong><span data-i18n="contact.hours">Dushanba – Juma, 9:00 – 18:00</span></span>
                         </li>
                     </ul>
                 </div>
@@ -595,42 +627,42 @@
                 <form class="contact-form reveal" id="contact-form" novalidate>
                     <div class="form-row">
                         <div class="field">
-                            <label for="name">Full name</label>
+                            <label for="name" data-i18n="form.name">Ismingiz</label>
                             <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
                             <p class="field-error" id="name-error"></p>
                         </div>
                         <div class="field">
-                            <label for="email">Email</label>
+                            <label for="email" data-i18n="form.email">E-mail</label>
                             <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
                             <p class="field-error" id="email-error"></p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="field">
-                            <label for="phone">Phone <span class="optional">(optional)</span></label>
+                            <label for="phone"><span data-i18n="form.phone">Telefon</span> <span class="optional" data-i18n="form.optional">(ixtiyoriy)</span></label>
                             <input id="phone" name="phone" type="tel" autocomplete="tel">
                         </div>
                         <div class="field">
-                            <label for="service">Service</label>
+                            <label for="service" data-i18n="form.service">Xizmat</label>
                             <select id="service" name="service" required aria-describedby="service-error">
-                                <option value="">Select a service</option>
-                                <option>Bookkeeping</option>
-                                <option>Tax planning &amp; returns</option>
-                                <option>Payroll services</option>
-                                <option>Financial advisory</option>
-                                <option>Audit &amp; assurance</option>
-                                <option>Business setup</option>
-                                <option>Not sure yet</option>
+                                <option value="" data-i18n="form.choose">Xizmatni tanlang</option>
+                                <option value="bookkeeping" data-i18n="services.s1.title">Buxgalteriya hisobi</option>
+                                <option value="tax" data-i18n="services.s2.title">Soliq hisobotlari</option>
+                                <option value="payroll" data-i18n="services.s3.title">Ish haqi hisobi</option>
+                                <option value="advisory" data-i18n="services.s4.title">Moliyaviy maslahat</option>
+                                <option value="restoration" data-i18n="services.s5.title">Buxgalteriyani tiklash</option>
+                                <option value="registration" data-i18n="services.s6.title">Biznesni ro‘yxatdan o‘tkazish</option>
+                                <option value="unsure" data-i18n="form.unsure">Hali aniq emas</option>
                             </select>
                             <p class="field-error" id="service-error"></p>
                         </div>
                     </div>
                     <div class="field">
-                        <label for="message">How can we help?</label>
+                        <label for="message" data-i18n="form.message">Qanday yordam bera olamiz?</label>
                         <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
                         <p class="field-error" id="message-error"></p>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Send message <svg class="icon"><use href="#i-arrow"/></svg></button>
+                    <button type="submit" class="btn btn-primary btn-block"><span data-i18n="form.submit">Xabar yuborish</span> <svg class="icon"><use href="#i-arrow"/></svg></button>
                     <p class="form-success" id="form-success" role="status" hidden></p>
                 </form>
             </div>
@@ -641,56 +673,58 @@
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <a class="logo logo-light" href="#home" aria-label="ClearSky Accounting home">
-                    <span class="logo-mark" aria-hidden="true">
-                        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9"/><path d="M9 22v-5M14 22v-9M19 22v-6M24 22V9"/></svg>
+                <a class="logo logo-light" href="#home" aria-label="Good Consult Service — bosh sahifa" data-i18n-attr="aria-label:logo.label">
+                    <img class="logo-mark" src="images/logo-mark.png" alt="" width="93" height="48">
+                    <span class="logo-text">
+                        <span class="logo-name"><b>Good</b> Consult Service</span>
+                        <small data-i18n="logo.tagline">Buxgalteriya kompaniyasi</small>
                     </span>
-                    <span class="logo-text">ClearSky<small>Accounting</small></span>
                 </a>
-                <p>Certified accountants helping small businesses, freelancers and families keep their finances clear since 2009.</p>
+                <p data-i18n="footer.about">2009-yildan beri kichik biznes, tadbirkorlar va oilalarga moliyaviy masalalarda ko‘mak beruvchi sertifikatlangan buxgalterlar.</p>
                 <div class="footer-social">
-                    <a href="#" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+                    <a href="#" aria-label="Telegram"><svg class="icon"><use href="#i-send"/></svg></a>
                     <a href="#" aria-label="Facebook"><svg class="icon"><use href="#i-facebook"/></svg></a>
                     <a href="#" aria-label="Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h3>Services</h3>
+                <h3 data-i18n="footer.services">Xizmatlar</h3>
                 <ul>
-                    <li><a href="#services">Bookkeeping</a></li>
-                    <li><a href="#services">Tax planning</a></li>
-                    <li><a href="#services">Payroll</a></li>
-                    <li><a href="#services">Advisory</a></li>
+                    <li><a href="#services" data-i18n="footer.s1">Buxgalteriya</a></li>
+                    <li><a href="#services" data-i18n="footer.s2">Soliqlar</a></li>
+                    <li><a href="#services" data-i18n="footer.s3">Ish haqi</a></li>
+                    <li><a href="#services" data-i18n="footer.s4">Maslahat</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Company</h3>
+                <h3 data-i18n="footer.company">Kompaniya</h3>
                 <ul>
-                    <li><a href="#about">About us</a></li>
-                    <li><a href="#team">Our team</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about" data-i18n="nav.about">Biz haqimizda</a></li>
+                    <li><a href="#team" data-i18n="footer.team">Jamoa</a></li>
+                    <li><a href="#pricing" data-i18n="nav.pricing">Narxlar</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">Aloqa</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-newsletter">
-                <h3>Newsletter</h3>
-                <p>Monthly tax tips and deadline reminders. No spam, ever.</p>
+                <h3 data-i18n="footer.newsletter">Yangiliklar</h3>
+                <p data-i18n="footer.newsletterText">Har oy soliq bo‘yicha maslahatlar va muddatlar haqida eslatmalar. Spam yo‘q.</p>
                 <form class="newsletter-form" id="newsletter-form" novalidate>
-                    <label for="newsletter-email" class="visually-hidden">Email address</label>
-                    <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" required>
-                    <button type="submit" class="btn btn-primary btn-small">Subscribe</button>
+                    <label for="newsletter-email" class="visually-hidden" data-i18n="footer.emailLabel">E-mail manzilingiz</label>
+                    <input id="newsletter-email" type="email" placeholder="E-mail manzilingiz" autocomplete="email" required data-i18n-attr="placeholder:footer.emailLabel">
+                    <button type="submit" class="btn btn-primary btn-small" data-i18n="footer.subscribe">Obuna bo‘lish</button>
                 </form>
                 <p class="newsletter-message" id="newsletter-message" role="status"></p>
             </div>
         </div>
         <div class="container footer-bottom">
-            <p>&copy; <span id="year">2026</span> ClearSky Accounting. All rights reserved.</p>
-            <p><a href="#">Privacy policy</a><a href="#">Terms of service</a></p>
+            <p>&copy; <span id="year">2026</span> Good Consult Service. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
+            <p><a href="#" data-i18n="footer.privacy">Maxfiylik siyosati</a><a href="#" data-i18n="footer.terms">Foydalanish shartlari</a></p>
         </div>
     </footer>
 
-    <a href="#home" class="back-to-top" aria-label="Back to top"><svg class="icon"><use href="#i-up"/></svg></a>
+    <a href="#home" class="back-to-top" aria-label="Yuqoriga qaytish" data-i18n-attr="aria-label:backToTop"><svg class="icon"><use href="#i-up"/></svg></a>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

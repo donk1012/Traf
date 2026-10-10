@@ -1,5 +1,108 @@
+const root = document.documentElement;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const LANG_KEY = 'gcs-lang';
+const THEME_KEY = 'gcs-theme';
+
+function saveSetting(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (error) {
+        // Storage can be blocked (private mode); the choice then lasts for this visit only
+    }
+}
+
+function readSetting(key) {
+    try {
+        return localStorage.getItem(key);
+    } catch (error) {
+        return null;
+    }
+}
+
+// ---------- Language: Uzbek (default, written in index.html) / Russian ----------
+
+const i18nElements = document.querySelectorAll('[data-i18n]');
+const i18nAttrElements = document.querySelectorAll('[data-i18n-attr]');
+const langButtons = document.querySelectorAll('.lang-switch [data-lang]');
+let currentLang = 'uz';
+
+// "aria-label:key, placeholder:key2" -> [['aria-label', 'key'], ['placeholder', 'key2']]
+function parseAttrList(value) {
+    return value.split(',').map((pair) => pair.split(':').map((part) => part.trim()));
+}
+
+// Keep the Uzbek text from the HTML so we can switch back to it
+const uzText = new Map();
+i18nElements.forEach((element) => uzText.set(element, element.innerHTML));
+
+const uzAttrs = new Map();
+i18nAttrElements.forEach((element) => {
+    const values = {};
+    parseAttrList(element.dataset.i18nAttr).forEach(([attr]) => {
+        values[attr] = element.getAttribute(attr);
+    });
+    uzAttrs.set(element, values);
+});
+
+function t(key) {
+    return messages[currentLang][key];
+}
+
+function setLanguage(lang) {
+    currentLang = lang;
+    root.lang = lang;
+    root.dataset.lang = lang;
+    const dictionary = lang === 'uz' ? {} : translations[lang];
+
+    i18nElements.forEach((element) => {
+        element.innerHTML = dictionary[element.dataset.i18n] ?? uzText.get(element);
+    });
+
+    i18nAttrElements.forEach((element) => {
+        parseAttrList(element.dataset.i18nAttr).forEach(([attr, key]) => {
+            element.setAttribute(attr, dictionary[key] ?? uzAttrs.get(element)[attr]);
+        });
+    });
+
+    langButtons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+    });
+
+    // Text that the script itself writes
+    updateNavToggleLabel();
+    updateBillingNotes();
+    refreshFormMessages();
+}
+
+langButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        setLanguage(button.dataset.lang);
+        saveSetting(LANG_KEY, button.dataset.lang);
+    });
+});
+
+// ---------- Light / dark theme ----------
+
+const themeToggle = document.querySelector('.theme-toggle');
+
+function applyTheme(theme) {
+    root.dataset.theme = theme;
+    themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+}
+
+themeToggle.addEventListener('click', () => {
+    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+    saveSetting(THEME_KEY, nextTheme);
+});
+
+// Follow the system setting until the visitor picks a theme themselves
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+    if (!readSetting(THEME_KEY)) {
+        applyTheme(event.matches ? 'dark' : 'light');
+    }
+});
 
 // ---------- Mobile navigation ----------
 
@@ -7,11 +110,16 @@ const header = document.querySelector('.site-header');
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('#site-nav');
 
+function updateNavToggleLabel() {
+    const open = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-label', t(open ? 'navClose' : 'navOpen'));
+}
+
 function setNavOpen(open) {
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     nav.classList.toggle('is-open', open);
     document.body.classList.toggle('nav-open', open);
+    updateNavToggleLabel();
 }
 
 navToggle.addEventListener('click', () => {
@@ -30,7 +138,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Close the mobile menu if the window grows back to desktop size
-window.matchMedia('(min-width: 961px)').addEventListener('change', (event) => {
+window.matchMedia('(min-width: 1181px)').addEventListener('change', (event) => {
     if (event.matches) {
         setNavOpen(false);
     }
@@ -100,6 +208,11 @@ if (prefersReducedMotion) {
 
 // ---------- Animated counters in the stats band ----------
 
+// 1200 -> "1 200" (non-breaking space, as written in Uzbek and Russian)
+function formatNumber(number) {
+    return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
 function animateCounter(element) {
     const target = Number(element.dataset.count);
     const duration = 1600;
@@ -108,7 +221,7 @@ function animateCounter(element) {
     function tick(now) {
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        element.textContent = Math.round(target * eased).toLocaleString('en-US');
+        element.textContent = formatNumber(Math.round(target * eased));
         if (progress < 1) {
             requestAnimationFrame(tick);
         }
@@ -136,6 +249,16 @@ const billingToggle = document.querySelector('#billing-toggle');
 const labelMonthly = document.querySelector('#label-monthly');
 const labelYearly = document.querySelector('#label-yearly');
 
+function isYearly() {
+    return billingToggle.getAttribute('aria-checked') === 'true';
+}
+
+function updateBillingNotes() {
+    document.querySelectorAll('.price-note').forEach((note) => {
+        note.textContent = t(isYearly() ? 'billingYearly' : 'billingMonthly');
+    });
+}
+
 function setBilling(yearly) {
     billingToggle.setAttribute('aria-checked', String(yearly));
     labelMonthly.classList.toggle('is-current', !yearly);
@@ -144,14 +267,10 @@ function setBilling(yearly) {
     document.querySelectorAll('.amount').forEach((amount) => {
         amount.textContent = yearly ? amount.dataset.yearly : amount.dataset.monthly;
     });
-    document.querySelectorAll('.price-note').forEach((note) => {
-        note.textContent = yearly ? 'Billed annually' : 'Billed monthly';
-    });
+    updateBillingNotes();
 }
 
-billingToggle.addEventListener('click', () => {
-    setBilling(billingToggle.getAttribute('aria-checked') !== 'true');
-});
+billingToggle.addEventListener('click', () => setBilling(!isYearly()));
 labelMonthly.addEventListener('click', () => setBilling(false));
 labelYearly.addEventListener('click', () => setBilling(true));
 
@@ -161,18 +280,20 @@ labelYearly.addEventListener('click', () => setBilling(true));
 
 const contactForm = document.querySelector('#contact-form');
 const formSuccess = document.querySelector('#form-success');
+let submittedName = '';
 
+// Each check returns true, or the key of the error message in `messages`
 const validators = {
-    name: (value) => value.trim().length >= 2 || 'Please enter your name.',
-    email: (value) => emailPattern.test(value.trim()) || 'Please enter a valid email address.',
-    service: (value) => value !== '' || 'Please choose a service.',
-    message: (value) => value.trim().length >= 10 || 'Please tell us a little more (at least 10 characters).',
+    name: (value) => value.trim().length >= 2 || 'errorName',
+    email: (value) => emailPattern.test(value.trim()) || 'errorEmail',
+    service: (value) => value !== '' || 'errorService',
+    message: (value) => value.trim().length >= 10 || 'errorMessage',
 };
 
 function validateField(fieldName) {
     const input = contactForm.elements.namedItem(fieldName);
     const result = validators[fieldName](input.value);
-    const error = result === true ? '' : result;
+    const error = result === true ? '' : t(result);
 
     document.querySelector(`#${fieldName}-error`).textContent = error;
     input.closest('.field').classList.toggle('has-error', Boolean(error));
@@ -191,6 +312,11 @@ Object.keys(validators).forEach((fieldName) => {
     input.addEventListener('change', revalidate);
 });
 
+function showFormSuccess() {
+    formSuccess.textContent = t('formSuccess').replace('{name}', submittedName);
+    formSuccess.hidden = false;
+}
+
 contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -201,9 +327,8 @@ contactForm.addEventListener('submit', (event) => {
         return;
     }
 
-    const firstName = contactForm.elements.namedItem('name').value.trim().split(/\s+/)[0];
-    formSuccess.textContent = `Thank you, ${firstName}! We have received your message and will reply within one business day.`;
-    formSuccess.hidden = false;
+    submittedName = contactForm.elements.namedItem('name').value.trim().split(/\s+/)[0];
+    showFormSuccess();
     contactForm.reset();
 });
 
@@ -211,21 +336,43 @@ contactForm.addEventListener('submit', (event) => {
 
 const newsletterForm = document.querySelector('#newsletter-form');
 const newsletterMessage = document.querySelector('#newsletter-message');
+let newsletterState = '';
+
+function showNewsletterMessage() {
+    const keys = { invalid: 'errorEmail', success: 'newsletterSuccess' };
+    newsletterMessage.textContent = newsletterState ? t(keys[newsletterState]) : '';
+}
 
 newsletterForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const input = newsletterForm.querySelector('input');
 
-    if (!emailPattern.test(input.value.trim())) {
-        newsletterMessage.textContent = 'Please enter a valid email address.';
+    if (emailPattern.test(input.value.trim())) {
+        newsletterState = 'success';
+        newsletterForm.reset();
+    } else {
+        newsletterState = 'invalid';
         input.focus();
-        return;
     }
-
-    newsletterMessage.textContent = 'Thanks for subscribing!';
-    newsletterForm.reset();
+    showNewsletterMessage();
 });
 
-// ---------- Footer year ----------
+// Re-show any visible form messages in the newly chosen language
+function refreshFormMessages() {
+    Object.keys(validators).forEach((fieldName) => {
+        if (contactForm.elements.namedItem(fieldName).getAttribute('aria-invalid') === 'true') {
+            validateField(fieldName);
+        }
+    });
+    if (!formSuccess.hidden) {
+        showFormSuccess();
+    }
+    showNewsletterMessage();
+}
+
+// ---------- Start-up ----------
 
 document.querySelector('#year').textContent = new Date().getFullYear();
+applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+setLanguage(root.dataset.lang === 'ru' ? 'ru' : 'uz');
+root.classList.remove('i18n-pending');
