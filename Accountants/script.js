@@ -302,16 +302,29 @@ const formStatus = document.querySelector('#form-status');
 let contactState = ''; // '', 'sending', 'success' or 'error'
 let submittedName = '';
 
-// Digits, spaces, "+", "-" and brackets only, with 9 to 15 digits in total
+// Numbers copied from phone contacts or messengers can carry invisible direction marks
+function cleanPhone(value) {
+    return value.replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/g, '').trim();
+}
+
+// Digits, spaces, "+", "-" and brackets only. Uzbek numbers with the 998 country code
+// need all 12 digits; local and foreign numbers need 9 to 15.
 function isPhoneNumber(value) {
-    const digits = value.replace(/\D/g, '');
-    return /^\+?[\d\s()-]+$/.test(value.trim()) && digits.length >= 9 && digits.length <= 15;
+    const phone = cleanPhone(value);
+    const digits = phone.replace(/\D/g, '');
+    if (!/^\+?[\d\s()-]+$/.test(phone)) {
+        return false;
+    }
+    if (phone.startsWith('+998') || (digits.startsWith('998') && digits.length > 9)) {
+        return digits.length === 12;
+    }
+    return digits.length >= 9 && digits.length <= 15;
 }
 
 // Each check returns true, or the key of the error message in `messages`
 const validators = {
     name: (value) => value.trim().length >= 2 || 'errorName',
-    phone: (value) => isPhoneNumber(value) || 'errorPhone',
+    phone: (value) => (cleanPhone(value) === '' ? 'errorPhone' : isPhoneNumber(value) || 'errorPhoneInvalid'),
     email: (value) => value.trim() === '' || emailPattern.test(value.trim()) || 'errorEmail',
     service: (value) => value !== '' || 'errorService',
     message: (value) => value.trim().length >= 10 || 'errorMessage',
@@ -371,7 +384,7 @@ contactForm.addEventListener('submit', async (event) => {
             type: 'contact',
             name: field('name').value.trim(),
             email: field('email').value.trim(),
-            phone: field('phone').value.trim(),
+            phone: cleanPhone(field('phone').value),
             service: field('service').selectedOptions[0].textContent,
             message: field('message').value.trim(),
             lang: currentLang,

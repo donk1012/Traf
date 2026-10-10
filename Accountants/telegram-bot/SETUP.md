@@ -66,7 +66,11 @@ Test it: open the website, send the contact form, and check Telegram and the she
 
 - **Changing the script:** after editing, use **Deploy → Manage deployments**,
   press the pencil, set **Version: New version**, then **Deploy**. The URL stays
-  the same.
+  the same. Edit only the lines that change, so your token on the
+  `TELEGRAM_TOKEN` line stays in place.
+- **When the website's form changes** (for example which fields are required),
+  update and redeploy the script at the same time. Otherwise the old script
+  rejects the new form and visitors see "message not sent".
 - **Spam protection:** the form has a hidden field that bots fill in and people
   don't, and the script accepts at most 30 messages per hour. You can change
   `MAX_MESSAGES_PER_HOUR` at the top of the script.

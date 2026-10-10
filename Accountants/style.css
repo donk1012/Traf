@@ -1944,7 +1944,7 @@ ol {
 /* ---------- 15. Stamp the documents ---------- */
 
 .stamp-desk {
-    align-items: center;
+    align-items: start;
     background-color: var(--bg-tint);
     border: 1px solid var(--border);
     border-radius: 28px;
@@ -1971,8 +1971,21 @@ ol {
     padding: 34px 34px 30px;
     position: relative;
     transform: rotate(var(--paper-tilt));
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
     user-select: none;
     width: 100%;
+}
+
+/* The picker comes first in the page (and in Tab order) but sits to the right on wide screens */
+.stamp-desk .paper {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.stamp-desk .stamp-tools {
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .paper:focus-visible {
@@ -2201,10 +2214,11 @@ ol {
     font-weight: 700;
 }
 
+/* Room for two lines, so showing or clearing the message never shifts the layout */
 .stamp-status {
     color: var(--success-text);
     font-weight: 800;
-    min-height: 1.5em;
+    min-height: 3.3em;
 }
 
 /* ---------- 16. Footer ---------- */
@@ -2507,8 +2521,10 @@ ol {
         padding: 32px 24px;
     }
 
-    .stamp-tools {
-        order: -1;
+    .stamp-desk .paper,
+    .stamp-desk .stamp-tools {
+        grid-column: auto;
+        grid-row: auto;
     }
 
     .stamp-picker {
@@ -2696,6 +2712,11 @@ ol {
         width: 72px;
     }
 
+    .stamp-round {
+        max-width: 112px;
+        width: 26%;
+    }
+
     .hero-actions .btn,
     .cta-actions .btn {
         width: 100%;
@@ -2707,6 +2728,42 @@ ol {
 
     .float-card small {
         font-size: 12px;
+    }
+}
+
+/* The smallest phones (320 px): shrink the header a little so the menu button fits */
+@media (max-width: 359px) {
+    .header-tools {
+        gap: 4px;
+    }
+
+    .site-header .logo-mark {
+        height: 28px;
+    }
+
+    .site-header .logo {
+        gap: 5px;
+    }
+
+    .site-header .logo-name {
+        font-size: 10px;
+    }
+
+    .theme-toggle {
+        height: 32px;
+        width: 32px;
+    }
+
+    .nav-toggle {
+        width: 30px;
+    }
+
+    .site-footer .logo-name b {
+        display: block;
+    }
+
+    .site-footer .logo-text small {
+        letter-spacing: 0.1em;
     }
 }
 

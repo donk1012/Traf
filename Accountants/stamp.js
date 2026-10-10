@@ -55,12 +55,12 @@
     // Rectangular office stamp with a word and today's date
     function rectSvg(wordKey, filterId) {
         const word = t(wordKey);
-        const size = Math.min(30, 214 / (word.length * 0.74)).toFixed(1);
+        const size = Math.min(30, 214 / (word.length * 0.84)).toFixed(1);
         return `<svg viewBox="0 0 260 104" xmlns="http://www.w3.org/2000/svg">
             <g${inkFilter(filterId)}>
                 <rect x="4" y="4" width="252" height="96" rx="12" fill="none" stroke="currentColor" stroke-width="5"/>
                 <rect x="13" y="13" width="234" height="78" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                <text x="130" y="56" text-anchor="middle" font-size="${size}" font-weight="800" letter-spacing="1.5" fill="currentColor">${word}</text>
+                <text class="stamp-word" x="130" y="56" text-anchor="middle" font-size="${size}" font-weight="800" letter-spacing="1.5" fill="currentColor">${word}</text>
                 <text x="130" y="80" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="currentColor">${today}</text>
             </g>
         </svg>`;
@@ -70,11 +70,21 @@
         return type === 'seal' ? sealSvg(filterId) : rectSvg(WORDS[type], filterId);
     }
 
+    // Safety net for wide letters: squeeze the word if it still runs past the inner frame
+    function fitWord(container) {
+        const word = container.querySelector('.stamp-word');
+        if (word && word.getComputedTextLength() > 214) {
+            word.setAttribute('textLength', '214');
+            word.setAttribute('lengthAdjust', 'spacingAndGlyphs');
+        }
+    }
+
     function renderPreviews() {
         options.forEach((option) => {
             const preview = option.querySelector('.stamp-preview');
             preview.style.color = INKS[option.dataset.stamp];
             preview.innerHTML = stampSvg(option.dataset.stamp, '');
+            fitWord(preview);
         });
     }
 
@@ -101,16 +111,26 @@
         return { x: spot.offsetLeft + spot.offsetWidth / 2, y: spot.offsetTop + spot.offsetHeight / 2 };
     }
 
-    function placeStamp(x, y) {
+    // keepInside: nudge the stamp so it fits on the paper (used for keyboard stamping)
+    function placeStamp(x, y, keepInside = false) {
         const stamp = document.createElement('div');
         stamp.className = `stamp ${selected === 'seal' ? 'stamp-round' : 'stamp-rect'}`;
-        stamp.style.left = `${(x / paper.offsetWidth) * 100}%`;
-        stamp.style.top = `${(y / paper.offsetHeight) * 100}%`;
         stamp.style.color = INKS[selected];
         stamp.style.setProperty('--angle', `${(Math.random() * 30 - 15).toFixed(1)}deg`);
         stamp.style.setProperty('--ink-opacity', (0.78 + Math.random() * 0.17).toFixed(2));
         stamp.innerHTML = stampSvg(selected, `ink-${1 + Math.floor(Math.random() * 3)}`);
         layer.append(stamp);
+        fitWord(stamp);
+
+        if (keepInside) {
+            const halfWidth = stamp.offsetWidth * 0.55 + 6;
+            const halfHeight = stamp.offsetHeight * 0.55 + 6;
+            x = Math.min(Math.max(x, halfWidth), paper.offsetWidth - halfWidth);
+            y = Math.min(Math.max(y, halfHeight), paper.offsetHeight - halfHeight);
+        }
+        stamp.style.left = `${(x / paper.offsetWidth) * 100}%`;
+        stamp.style.top = `${(y / paper.offsetHeight) * 100}%`;
+
         if (layer.children.length > MAX_STAMPS) {
             layer.firstElementChild.remove();
         }
@@ -128,17 +148,26 @@
         }
     }
 
+    // Stamps the "M.O‘." spot (place for the stamp)
+    function stampSpot() {
+        const center = spotCenter();
+        placeStamp(center.x + Math.random() * 24 - 12, center.y + Math.random() * 16 - 8, true);
+    }
+
     paper.addEventListener('click', (event) => {
+        // Clicks without a position (screen readers, switch controls) stamp the spot
+        if (event.detail === 0) {
+            stampSpot();
+            return;
+        }
         const point = toPaper(event.clientX, event.clientY);
         placeStamp(point.x, point.y);
     });
 
-    // Keyboard: Enter or Space stamps the "M.O‘." spot (place for the stamp)
     paper.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            const center = spotCenter();
-            placeStamp(center.x + Math.random() * 24 - 12, center.y + Math.random() * 16 - 8);
+            stampSpot();
         }
     });
 
@@ -163,4 +192,6 @@
 
     renderPreviews();
     renderText();
+    // Previews measured before the web font arrived get measured again once it is in
+    document.fonts?.ready.then(renderPreviews);
 })();

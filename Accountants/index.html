@@ -705,14 +705,27 @@
                     <p data-i18n="stamp.text">Buxgalter ishidagi eng yoqimli lahza — muhr bosish. Muhrni tanlang va hujjatning istalgan joyiga bosing.</p>
                 </div>
                 <div class="stamp-desk reveal">
+                    <div class="stamp-tools">
+                        <p class="stamp-tools-title" data-i18n="stamp.choose">Muhrni tanlang</p>
+                        <div class="stamp-picker" role="group" aria-label="Muhr turi" data-i18n-attr="aria-label:stamp.pickerLabel">
+                            <button type="button" class="stamp-option" data-stamp="seal" aria-pressed="true"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.seal">Muhr</span></button>
+                            <button type="button" class="stamp-option" data-stamp="approved" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.approved">Tasdiqlandi</span></button>
+                            <button type="button" class="stamp-option" data-stamp="paid" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.paid">To‘landi</span></button>
+                            <button type="button" class="stamp-option" data-stamp="copy" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.copy">Nusxasi to‘g‘ri</span></button>
+                        </div>
+                        <p class="stamp-count" id="stamp-count">Bosilgan muhrlar: 0</p>
+                        <button type="button" class="btn btn-outline btn-small" id="stamp-clear" data-i18n="stamp.clear">Tozalash</button>
+                        <p class="stamp-status" id="stamp-status" role="status"></p>
+                    </div>
+
                     <div class="paper" id="stamp-paper" tabindex="0" role="button" aria-label="Hisob-faktura: muhr bosish uchun ustiga bosing yoki Enter tugmasini bosing" data-i18n-attr="aria-label:stamp.paperLabel">
                         <div class="paper-content" aria-hidden="true">
                             <div class="paper-head">
                                 <p><strong data-i18n="stamp.docTitle">HISOB-FAKTURA</strong> <span>№ 0145</span></p>
                                 <span class="paper-date" id="paper-date">10.10.2026</span>
                             </div>
-                            <p class="paper-party"><span data-i18n="stamp.from">Ijrochi:</span> Good Consult Service</p>
-                            <p class="paper-party"><span data-i18n="stamp.to">Buyurtmachi:</span> <span data-i18n="stamp.client">“Sizning kompaniyangiz” MChJ</span></p>
+                            <p class="paper-party"><span data-i18n="stamp.from">Yetkazib beruvchi:</span> Good Consult Service</p>
+                            <p class="paper-party"><span data-i18n="stamp.to">Xaridor:</span> <span data-i18n="stamp.client">“Sizning kompaniyangiz” MChJ</span></p>
                             <table class="paper-table">
                                 <thead>
                                     <tr><th>№</th><th data-i18n="stamp.colService">Xizmat</th><th data-i18n="stamp.colSum">Summa</th></tr>
@@ -733,19 +746,6 @@
                             </div>
                         </div>
                         <div class="paper-stamps" id="paper-stamps" aria-hidden="true"></div>
-                    </div>
-
-                    <div class="stamp-tools">
-                        <p class="stamp-tools-title" data-i18n="stamp.choose">Muhrni tanlang</p>
-                        <div class="stamp-picker" role="group" aria-label="Muhr turi" data-i18n-attr="aria-label:stamp.pickerLabel">
-                            <button type="button" class="stamp-option" data-stamp="seal" aria-pressed="true"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.seal">Muhr</span></button>
-                            <button type="button" class="stamp-option" data-stamp="approved" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.approved">Tasdiqlandi</span></button>
-                            <button type="button" class="stamp-option" data-stamp="paid" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.paid">To‘landi</span></button>
-                            <button type="button" class="stamp-option" data-stamp="copy" aria-pressed="false"><span class="stamp-preview" aria-hidden="true"></span><span data-i18n="stamp.copy">Nusxasi to‘g‘ri</span></button>
-                        </div>
-                        <p class="stamp-count" id="stamp-count">Bosilgan muhrlar: 0</p>
-                        <button type="button" class="btn btn-outline btn-small" id="stamp-clear" data-i18n="stamp.clear">Tozalash</button>
-                        <p class="stamp-status" id="stamp-status" role="status"></p>
                     </div>
                 </div>
             </div>
